@@ -1,0 +1,58 @@
+.box-theme-basic {
+	position: relative;
+}
+
+.box-theme-basic .top {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	overflow: hidden;
+}
+
+.box-theme-basic .bottom {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.box-theme-basic .body {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	overflow: scroll;
+}
+
+.box-theme-basic .top > div {
+	display: table; /* stretch to nested table's width */
+	width: 100%;
+	padding-right: 32px; /*	pad for additional width of slave's scrollbar */
+}
+
+.box-theme-basic .body > div {
+	display: table; /* stretch to nested table's width */
+	width: 100%;
+}
+
+.box-theme-basic .resizing {
+	cursor: col-resize;
+}
+
+.box-theme-basic table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.box-theme-basic th {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.box-theme-basic td {
+	overflow: hidden;
+	white-space: nowrap;
+}

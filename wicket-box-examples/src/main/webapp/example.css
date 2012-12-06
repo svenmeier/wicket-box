@@ -1,0 +1,77 @@
+.example-table {
+	width: 300px;
+	height: 300px;
+}
+
+.example-table .top {
+	background-color: #DDDDDD;
+}
+
+.example-table th {
+	border: 1px solid #AAAAAA;
+}
+
+.scroll-example .scroll {
+	float: left;
+	width: 200px;
+	height: 200px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.stretch-example  {
+	height: 200px;
+	width: 400px;
+	background: #eeeeee;
+	position: relative;
+}
+
+.stretch-example .top {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	background: #aaaaaa;
+}
+
+.stretch-example .body {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	overflow: scroll;
+}
+
+.stretch-example .bottom {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: #aaaaaa;
+}
+
+.resizable-example .resizing {
+	cursor: col-resize;
+}
+
+.resizable-example table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.resizable-example thead {
+	background-color: #DDDDDD;
+}
+
+.resizable-example th {
+	overflow: hidden;
+	white-space: nowrap;
+	border: 1px solid #AAAAAA;
+}
+
+.resizable-example td {
+	overflow: hidden;
+	white-space: nowrap;
+}
