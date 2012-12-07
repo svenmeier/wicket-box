@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,9 @@ import wicketbox.table.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class BoxExamplePage extends ExamplePage
-{
+public class BoxExamplePage extends ExamplePage {
 
-	public BoxExamplePage()
-	{
+	public BoxExamplePage() {
 		DataBox<Foo, Void> table = new DataBox<Foo, Void>("table", columns(),
 				new FooDataProvider(), 20);
 		table.addTopToolbar(new HeadersToolbar<Void>(table, null));
@@ -43,8 +41,7 @@ public class BoxExamplePage extends ExamplePage
 		add(table);
 	}
 
-	private List<IColumn<Foo, Void>> columns()
-	{
+	private List<IColumn<Foo, Void>> columns() {
 		List<IColumn<Foo, Void>> columns = new ArrayList<IColumn<Foo, Void>>();
 		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), "name"));
 		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), "name"));

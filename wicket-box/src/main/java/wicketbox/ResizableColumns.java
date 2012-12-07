@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,7 @@ import wicketbox.util.CollectionFormattable;
  * 
  * @author svenmeier
  */
-public class ResizableColumns extends AbstractBoxBehavior
-{
+public class ResizableColumns extends AbstractBoxBehavior {
 
 	/**
 	 * Default maximum age for cookie persistence.
@@ -49,8 +48,8 @@ public class ResizableColumns extends AbstractBoxBehavior
 
 	private String bodySelector;
 
-	public ResizableColumns(String headerSelector, String bodySelector, IModel<List<Integer>> widths)
-	{
+	public ResizableColumns(String headerSelector, String bodySelector,
+			IModel<List<Integer>> widths) {
 		Args.notNull(widths, "widths");
 
 		this.headerSelector = headerSelector;
@@ -59,49 +58,44 @@ public class ResizableColumns extends AbstractBoxBehavior
 	}
 
 	@Override
-	public void detach(Component component)
-	{
+	public void detach(Component component) {
 		super.detach(component);
 
 		this.widths.detach();
 	}
 
 	@Override
-	public final void renderHead(Component component, IHeaderResponse response)
-	{
+	public final void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
 
-		String initJS = String.format("wicketbox.resizableColumns('%s',{'header': '%s', 'body': '%s'},%s,%s);",
-				component.getMarkupId(), headerSelector, bodySelector, getPersist(component),
-				new CollectionFormattable(this.widths.getObject()));
+		String initJS = String
+				.format("wicketbox.resizableColumns('%s',{'header': '%s', 'body': '%s'},%s,%s);",
+						component.getMarkupId(), headerSelector, bodySelector,
+						getPersist(component), new CollectionFormattable(
+								this.widths.getObject()));
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 
 	/**
 	 * @see AbstractBoxBehavior#persistInCookie(String)
 	 */
-	protected String getPersist(Component component)
-	{
-		return persistInCookie("resizableColumns:" + component.getPageRelativePath(), MAX_AGE);
+	protected String getPersist(Component component) {
+		return persistInCookie(
+				"resizableColumns:" + component.getPageRelativePath(), MAX_AGE);
 	}
 
 	@Override
-	protected void respond(AjaxRequestTarget target)
-	{
+	protected void respond(AjaxRequestTarget target) {
 		final RequestCycle requestCycle = RequestCycle.get();
 
-		final String parameter = requestCycle.getRequest().getRequestParameters()
-				.getParameterValue("value").toString();
+		final String parameter = requestCycle.getRequest()
+				.getRequestParameters().getParameterValue("value").toString();
 
 		List<Integer> widths = new ArrayList<Integer>();
-		for (String string : parameter.split(":"))
-		{
-			try
-			{
+		for (String string : parameter.split(":")) {
+			try {
 				widths.add(Integer.parseInt(string));
-			}
-			catch (Exception noInteger)
-			{
+			} catch (Exception noInteger) {
 				break;
 			}
 		}
@@ -115,7 +109,6 @@ public class ResizableColumns extends AbstractBoxBehavior
 	 * See
 	 * {@link AbstractBoxBehavior#persistOnServer(String, java.nio.channels.Channel)}
 	 */
-	protected void onResized(AjaxRequestTarget target)
-	{
+	protected void onResized(AjaxRequestTarget target) {
 	}
 }

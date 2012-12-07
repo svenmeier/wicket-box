@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,22 +26,19 @@ import org.apache.wicket.request.resource.ResourceReference;
 /**
  * @author Sven Meier
  */
-public class BasicTheme extends Behavior
-{
+public class BasicTheme extends Behavior {
 	private static final long serialVersionUID = 1L;
 
-	private static final ResourceReference CSS = new CssResourceReference(BasicTheme.class,
-			"basic/theme.css");
+	private static final ResourceReference CSS = new CssResourceReference(
+			BasicTheme.class, "basic/theme.css");
 
 	@Override
-	public void renderHead(Component component, IHeaderResponse response)
-	{
+	public void renderHead(Component component, IHeaderResponse response) {
 		response.render(CssHeaderItem.forReference(CSS));
 	}
-	
+
 	@Override
-	public void onComponentTag(Component component, ComponentTag tag)
-	{
+	public void onComponentTag(Component component, ComponentTag tag) {
 		tag.append("class", "box-theme-basic", " ");
 	}
 

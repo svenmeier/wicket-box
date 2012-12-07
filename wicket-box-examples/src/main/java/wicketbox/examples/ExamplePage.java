@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,5 @@ import org.apache.wicket.markup.html.WebPage;
 /**
  * @author Sven Meier
  */
-public abstract class ExamplePage extends WebPage
-{
+public abstract class ExamplePage extends WebPage {
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,9 @@ import wicketbox.SynchronizedScroll;
 /**
  * @author Sven Meier
  */
-public class SynchronizedScrollExamplePage extends ExamplePage
-{
+public class SynchronizedScrollExamplePage extends ExamplePage {
 
-	public SynchronizedScrollExamplePage()
-	{
+	public SynchronizedScrollExamplePage() {
 		WebMarkupContainer scroll = new WebMarkupContainer("scroll");
 		scroll.add(new SynchronizedScroll(Orientation.VERTICAL, ".scroll"));
 		add(scroll);

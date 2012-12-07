@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,24 +20,20 @@ import java.io.Serializable;
 /**
  * @author Sven Meier
  */
-public class Foo implements Serializable
-{
+public class Foo implements Serializable {
 
 	private String name;
 
-	public Foo(String name)
-	{
+	public Foo(String name) {
 		this.name = name;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return name;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,43 +30,39 @@ import wicketbox.ResizableColumns;
 /**
  * @author Sven Meier
  */
-public class ResizableColumnsExamplePage extends ExamplePage
-{
+public class ResizableColumnsExamplePage extends ExamplePage {
 
-	public ResizableColumnsExamplePage()
-	{
+	public ResizableColumnsExamplePage() {
 		WebMarkupContainer resizable = new WebMarkupContainer("resizable");
-		resizable.add(new ResizableColumns("table.resizable-header", "table.resizable-body",
-				new WidthsModel()));
+		resizable.add(new ResizableColumns("table.resizable-header",
+				"table.resizable-body", new WidthsModel()));
 		add(resizable);
 
-		resizable.add(new ListView<Foo>("row", new FoosModel())
-		{
+		resizable.add(new ListView<Foo>("row", new FoosModel()) {
 			@Override
-			protected void populateItem(ListItem<Foo> item)
-			{
-				item.add(new Label("cell1", new PropertyModel<String>(item.getModel(), "name")));
-				item.add(new Label("cell2", new PropertyModel<String>(item.getModel(), "name")));
-				item.add(new Label("cell3", new PropertyModel<String>(item.getModel(), "name")));
-				item.add(new Label("cell4", new PropertyModel<String>(item.getModel(), "name")));
+			protected void populateItem(ListItem<Foo> item) {
+				item.add(new Label("cell1", new PropertyModel<String>(item
+						.getModel(), "name")));
+				item.add(new Label("cell2", new PropertyModel<String>(item
+						.getModel(), "name")));
+				item.add(new Label("cell3", new PropertyModel<String>(item
+						.getModel(), "name")));
+				item.add(new Label("cell4", new PropertyModel<String>(item
+						.getModel(), "name")));
 			}
 		});
 	}
 
-	private class FoosModel extends AbstractReadOnlyModel<List<Foo>>
-	{
+	private class FoosModel extends AbstractReadOnlyModel<List<Foo>> {
 		@Override
-		public List<Foo> getObject()
-		{
+		public List<Foo> getObject() {
 			return new FooDataProvider().foos;
 		}
 	}
 
-	private class WidthsModel extends AbstractReadOnlyModel<List<Integer>>
-	{
+	private class WidthsModel extends AbstractReadOnlyModel<List<Integer>> {
 		@Override
-		public List<Integer> getObject()
-		{
+		public List<Integer> getObject() {
 			return Arrays.asList(64, 64, 64, 64);
 		}
 	}

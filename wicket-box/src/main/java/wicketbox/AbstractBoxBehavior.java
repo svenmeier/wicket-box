@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,37 +26,33 @@ import org.apache.wicket.request.resource.ResourceReference;
 /**
  * @author svenmeier
  */
-public abstract class AbstractBoxBehavior extends AbstractDefaultAjaxBehavior
-{
+public abstract class AbstractBoxBehavior extends AbstractDefaultAjaxBehavior {
 
 	public static final ResourceReference JS = new JavaScriptResourceReference(
 			AbstractBoxBehavior.class, "wicket-box.js");
 
 	@Override
-	public void renderHead(Component component, IHeaderResponse response)
-	{
+	public void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
 
 		response.render(JavaScriptHeaderItem.forReference(JS));
 	}
 
-	public static String persistNot(Component component)
-	{
+	public static String persistNot(Component component) {
 		return String.format("wicketbox.persistNot()", component.getPath());
 	}
 
-	public static String persistInCookie(String key, int maxAge)
-	{
+	public static String persistInCookie(String key, int maxAge) {
 		return String.format("wicketbox.persistInCookie('%s',%s)", key, maxAge);
 	}
 
-	public static String persistInDocument(String key)
-	{
+	public static String persistInDocument(String key) {
 		return String.format("wicketbox.persistInDocument('%s')", key);
 	}
 
-	public static String persistOnServer(CharSequence charSequence, AjaxChannel channel)
-	{
-		return String.format("wicketbox.persistOnServer('%s', '%s')", charSequence, channel);
+	public static String persistOnServer(CharSequence charSequence,
+			AjaxChannel channel) {
+		return String.format("wicketbox.persistOnServer('%s', '%s')",
+				charSequence, channel);
 	}
 }

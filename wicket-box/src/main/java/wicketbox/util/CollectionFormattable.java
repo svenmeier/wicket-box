@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,19 @@ import java.util.Formatter;
 /**
  * @author Sven Meier
  */
-public class CollectionFormattable implements Formattable
-{
+public class CollectionFormattable implements Formattable {
 	private Collection<?> collection;
-	
+
 	public CollectionFormattable(Object[] array) {
 		this.collection = Arrays.asList(array);
 	}
-	
+
 	public CollectionFormattable(Collection<?> collection) {
 		this.collection = collection;
 	}
-	
-	public void formatTo(Formatter formatter, int flags, int width, int precision)
-	{
+
+	public void formatTo(Formatter formatter, int flags, int width,
+			int precision) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[");
 		for (Object object : collection) {
@@ -53,7 +52,7 @@ public class CollectionFormattable implements Formattable
 			}
 		}
 		builder.append("]");
-		
+
 		formatter.format(builder.toString());
 	}
 }

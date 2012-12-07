@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Sven Meier
+ * Copyright 2012 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ import org.apache.wicket.model.Model;
 /**
  * @author Sven Meier
  */
-public class FooDataProvider implements ISortableDataProvider<Foo, String>
-{
+public class FooDataProvider implements ISortableDataProvider<Foo, String> {
 
 	public List<Foo> foos = new ArrayList<Foo>();
 
@@ -62,31 +61,25 @@ public class FooDataProvider implements ISortableDataProvider<Foo, String>
 		foos.add(new Foo("Z"));
 	}
 
-	public long size()
-	{
+	public long size() {
 		return foos.size();
 	}
 
-	public Iterator<? extends Foo> iterator(long first, long count)
-	{
-		return foos.subList((int)first, (int)(first + count)).iterator();
+	public Iterator<? extends Foo> iterator(long first, long count) {
+		return foos.subList((int) first, (int) (first + count)).iterator();
 	}
 
-	public IModel<Foo> model(Foo foo)
-	{
+	public IModel<Foo> model(Foo foo) {
 		return Model.of(foo);
 	}
 
-	public ISortState<String> getSortState()
-	{
+	public ISortState<String> getSortState() {
 		return new SingleSortState<String>();
 	}
 
-	public void setSortState(ISortState<String> state)
-	{
+	public void setSortState(ISortState<String> state) {
 	}
 
-	public void detach()
-	{
+	public void detach() {
 	}
 }
