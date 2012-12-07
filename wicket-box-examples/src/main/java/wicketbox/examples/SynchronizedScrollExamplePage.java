@@ -19,8 +19,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 
+import wicketbox.Orientation;
 import wicketbox.SynchronizedScroll;
-import wicketbox.SynchronizedScroll.Orientation;
 
 /**
  * @author Sven Meier

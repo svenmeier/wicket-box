@@ -19,18 +19,18 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 
+import wicketbox.Orientation;
 import wicketbox.Stretch;
 
 /**
  * @author Sven Meier
  */
-public class StretchExamplePage extends ExamplePage
-{
+public class StretchExamplePage extends ExamplePage {
 
-	public StretchExamplePage()
-	{
+	public StretchExamplePage() {
 		WebMarkupContainer stretch = new WebMarkupContainer("stretch");
-		stretch.add(new Stretch(".top", ".body", ".bottom"));
+		stretch.add(new Stretch(Orientation.HORIZONTAL, ".left", ".body",
+				".right"));
 		add(stretch);
 
 		stretch.add(new Label("body", new StringResourceModel("lorem", null)));

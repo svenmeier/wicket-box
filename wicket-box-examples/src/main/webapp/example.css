@@ -21,16 +21,15 @@
 
 .stretch-example  {
 	height: 200px;
-	width: 400px;
 	background: #eeeeee;
 	position: relative;
 }
 
-.stretch-example .top {
+.stretch-example .left {
 	position: absolute;
 	top: 0px;
+	bottom: 0px;
 	left: 0px;
-	right: 0px;
 	background: #aaaaaa;
 }
 
@@ -43,10 +42,10 @@
 	overflow: scroll;
 }
 
-.stretch-example .bottom {
+.stretch-example .right {
 	position: absolute;
+	top: 0px;
 	bottom: 0px;
-	left: 0px;
 	right: 0px;
 	background: #aaaaaa;
 }

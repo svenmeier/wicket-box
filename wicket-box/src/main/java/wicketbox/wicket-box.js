@@ -9,47 +9,55 @@
 			
 			MARGIN: 4,
 
-			stretch: function(id, selectors) {
+			stretch: function(id, orientation, selectors) {
 				var element = document.getElementById(id);
 
-				var top = 0;
-				$(element).children(selectors.top).each(function(index, child) {
-					top += $(child).outerHeight();
+				var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
+
+				var leading = 0;
+				$(element).children(selectors.leading).each(function(index, child) {
+					leading += $(child)[method]();
 				});
 							
-				var bottom = 0;
-				$(element).children(selectors.bottom).each(function(index, child) {
-					bottom += $(child).outerHeight();
+				var trailing = 0;
+				$(element).children(selectors.trailing).each(function(index, child) {
+					trailing += $(child)[method]();
 				});
 
-				$(element).children(selectors.center).css({'top': top + 'px', 'bottom': bottom + 'px'});
+				if (orientation == 'HORIZONTAL') {
+					$(element).children(selectors.center).css({'left': leading + 'px', 'right': trailing + 'px'});
+				} else {
+					$(element).children(selectors.center).css({'top': leading + 'px', 'bottom': trailing + 'px'});
+				}
 			},
 			
 			synchronizedScroll: function(id, orientation, selector, persist, value) {
 				var element = document.getElementById(id);
 				var synchronizing;
 				
+				var method = 'HORIZONTAL' == orientation ? 'scrollLeft' : 'scrollTop';
+				
 				loadScroll();
 				
 				$(element).find(selector).on('scroll', function(event) {
-					value = $(event.target)[orientation]();
+					value = $(event.target)[method]();
 						
 					$(element).children(selector).each(function(index, child) {
-						if ($(child)[orientation]() != value) {
-							$(child)[orientation](value);
+						if ($(child)[method]() != value) {
+							$(child)[method](value);
 						}
 					});
 					
-					saveScroll(value);
+					saveScroll();
 				});
 				
 				function loadScroll() {
 					value = parseInt(persist()) || value;
 					
-					$(element).find(selector)[orientation](value);
+					$(element).find(selector)[method](value);
 				};
 
-				function saveScroll(value) {
+				function saveScroll() {
 					persist(value);
 				};				
 			},

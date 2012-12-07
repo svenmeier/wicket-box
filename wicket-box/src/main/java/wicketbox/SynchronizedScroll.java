@@ -31,8 +31,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
  * 
  * @author svenmeier
  */
-public class SynchronizedScroll extends AbstractBoxBehavior
-{
+public class SynchronizedScroll extends AbstractBoxBehavior {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,13 +41,12 @@ public class SynchronizedScroll extends AbstractBoxBehavior
 
 	private String selector;
 
-	public SynchronizedScroll(Orientation orientation, String selector)
-	{
+	public SynchronizedScroll(Orientation orientation, String selector) {
 		this(orientation, selector, Model.of(0));
 	}
 
-	public SynchronizedScroll(Orientation orientation, String selector, IModel<Integer> scroll)
-	{
+	public SynchronizedScroll(Orientation orientation, String selector,
+			IModel<Integer> scroll) {
 		this.orientation = orientation;
 		this.selector = selector;
 
@@ -56,16 +54,14 @@ public class SynchronizedScroll extends AbstractBoxBehavior
 	}
 
 	@Override
-	public void detach(Component component)
-	{
+	public void detach(Component component) {
 		super.detach(component);
 
 		scroll.detach();
 	}
 
 	@Override
-	public void renderHead(Component component, IHeaderResponse response)
-	{
+	public void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
 
 		final String id = component.getMarkupId();
@@ -74,8 +70,9 @@ public class SynchronizedScroll extends AbstractBoxBehavior
 
 		final int scroll = this.scroll.getObject();
 
-		String initJS = String.format("wicketbox.synchronizedScroll('%s','%s','%s',%s,%s);", id,
-				orientation, selector, persist, scroll);
+		String initJS = String.format(
+				"wicketbox.synchronizedScroll('%s','%s','%s',%s,%s);", id,
+				orientation.name(), selector, persist, scroll);
 
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
@@ -83,16 +80,15 @@ public class SynchronizedScroll extends AbstractBoxBehavior
 	/**
 	 * @see AbstractBoxBehavior#persistInDocument(String)
 	 */
-	protected String getPersist(Component component)
-	{
-		return persistInDocument("synchronizedScroll:" + component.getPageRelativePath());
+	protected String getPersist(Component component) {
+		return persistInDocument("synchronizedScroll:"
+				+ component.getPageRelativePath());
 	}
 
 	/**
 	 */
 	@Override
-	protected void respond(AjaxRequestTarget target)
-	{
+	protected void respond(AjaxRequestTarget target) {
 		final RequestCycle requestCycle = RequestCycle.get();
 
 		final int scroll = requestCycle.getRequest().getRequestParameters()
@@ -109,24 +105,6 @@ public class SynchronizedScroll extends AbstractBoxBehavior
 	 * 
 	 * @param value
 	 */
-	protected void onScrolled()
-	{
-	}
-
-	public enum Orientation {
-		HORIZONTAL {
-			@Override
-			public String toString()
-			{
-				return "scrollLeft";
-			}
-		},
-		VERTICAL {
-			@Override
-			public String toString()
-			{
-				return "scrollTop";
-			}
-		}
+	protected void onScrolled() {
 	}
 }

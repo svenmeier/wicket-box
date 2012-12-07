@@ -23,11 +23,10 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import wicketbox.Orientation;
 import wicketbox.ResizableColumns;
 import wicketbox.Stretch;
 import wicketbox.SynchronizedScroll;
-import wicketbox.SynchronizedScroll.Orientation;
-
 
 /**
  * @see SynchronizedScroll
@@ -36,47 +35,39 @@ import wicketbox.SynchronizedScroll.Orientation;
  * 
  * @author Sven Meier
  */
-public class DataBox<T, S> extends DataTable<T, S>
-{
+public class DataBox<T, S> extends DataTable<T, S> {
 
 	private static final int DEFAULT_WIDTH = 64;
 
-	public DataBox(String id, List<? extends IColumn<T, S>> columns, IDataProvider<T> dataProvider,
-			long rowsPerPage)
-	{
+	public DataBox(String id, List<? extends IColumn<T, S>> columns,
+			IDataProvider<T> dataProvider, long rowsPerPage) {
 		super(id, columns, dataProvider, rowsPerPage);
 
-		add(new Stretch(".top", ".body", ".bottom"));
+		add(new Stretch(Orientation.VERTICAL, ".top", ".body", ".bottom"));
 		add(new ResizableColumns(".top table", ".body table", new WidthsModel()));
 		add(new SynchronizedScroll(Orientation.HORIZONTAL, ".top, .body"));
 	}
 
-	protected int getWidth(IColumn<?, ?> column)
-	{
+	protected int getWidth(IColumn<?, ?> column) {
 		return DEFAULT_WIDTH;
 	}
 
-	private class WidthsModel implements IModel<List<Integer>>
-	{
+	private class WidthsModel implements IModel<List<Integer>> {
 
-		public void detach()
-		{
+		public void detach() {
 		}
 
-		public List<Integer> getObject()
-		{
+		public List<Integer> getObject() {
 			List<Integer> widths = new ArrayList<Integer>();
 
-			for (IColumn<?, ?> column : getColumns())
-			{
+			for (IColumn<?, ?> column : getColumns()) {
 				widths.add(DataBox.this.getWidth(column));
 			}
 
 			return widths;
 		}
 
-		public void setObject(List<Integer> object)
-		{
+		public void setObject(List<Integer> object) {
 		}
 	}
 }

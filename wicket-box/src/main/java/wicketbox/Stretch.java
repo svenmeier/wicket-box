@@ -23,38 +23,40 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 /**
  * @author svenmeier
  */
-public class Stretch extends AbstractBoxBehavior
-{
+public class Stretch extends AbstractBoxBehavior {
 	private static final long serialVersionUID = 1L;
 
-	private String topSelector;
+	private String leadingSelector;
 
 	private String centerSelector;
 
-	private String bottomSelector;
+	private String trailingSelector;
 
-	public Stretch(String topSelector, String centerSelector, String bottomSelector)
-	{
-		this.topSelector = topSelector;
+	private Orientation orientation;
+
+	public Stretch(Orientation orientation, String leadingSelector,
+			String centerSelector, String trailingSelector) {
+		this.orientation = orientation;
+
+		this.leadingSelector = leadingSelector;
 		this.centerSelector = centerSelector;
-		this.bottomSelector = bottomSelector;
+		this.trailingSelector = trailingSelector;
 	}
 
 	@Override
-	public final void renderHead(Component component, IHeaderResponse response)
-	{
+	public final void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
 
 		final String id = component.getMarkupId();
 
-		String initJS = String.format(
-				"wicketbox.stretch('%s', {'top': '%s', 'center': '%s', 'bottom': '%s'});", id,
-				topSelector, centerSelector, bottomSelector);
+		String initJS = String
+				.format("wicketbox.stretch('%s', '%s', {'leading': '%s', 'center': '%s', 'trailing': '%s'});",
+						id, orientation, leadingSelector, centerSelector,
+						trailingSelector);
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 
 	@Override
-	protected void respond(AjaxRequestTarget target)
-	{
+	protected void respond(AjaxRequestTarget target) {
 	}
 }

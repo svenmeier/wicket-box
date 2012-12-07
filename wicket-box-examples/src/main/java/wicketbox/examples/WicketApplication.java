@@ -20,25 +20,20 @@ import org.apache.wicket.protocol.http.WebApplication;
 /**
  * @author Sven Meier
  */
-public class WicketApplication extends WebApplication
-{
-	public WicketApplication()
-	{
+public class WicketApplication extends WebApplication {
+	public WicketApplication() {
 	}
 
 	@Override
-	protected void init()
-	{
+	protected void init() {
 		getMarkupSettings().setStripWicketTags(true);
 
-		mountPage("table", TableExamplePage.class);
 		mountPage("scroll", SynchronizedScrollExamplePage.class);
 		mountPage("stretch", StretchExamplePage.class);
 		mountPage("resizable", ResizableColumnsExamplePage.class);
 	}
 
-	public Class<TableExamplePage> getHomePage()
-	{
-		return TableExamplePage.class;
+	public Class<BoxExamplePage> getHomePage() {
+		return BoxExamplePage.class;
 	}
 }

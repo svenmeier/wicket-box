@@ -30,10 +30,10 @@ import wicketbox.table.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class TableExamplePage extends ExamplePage
+public class BoxExamplePage extends ExamplePage
 {
 
-	public TableExamplePage()
+	public BoxExamplePage()
 	{
 		DataBox<Foo, Void> table = new DataBox<Foo, Void>("table", columns(),
 				new FooDataProvider(), 20);
