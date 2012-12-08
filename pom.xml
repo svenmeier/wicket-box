@@ -3,12 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>7</version>
+    </parent>
     <groupId>com.github.wicket-box</groupId>
     <artifactId>wicket-box-parent</artifactId>
     <version>0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Wicket Box Parent</name>
     <description>Wicket Box.</description>
+    <url>http://github.com/svenmeier/wicket-box</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -134,6 +140,19 @@
 				    <downloadSources>true</downloadSources>
 			    </configuration>
 		    </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -150,12 +169,23 @@
 		</pluginManagement>
     </build>
 
-	<scm>
+    <scm>
         <connection>scm:git:http://github.com/svenmeier/wicket-box.git</connection>
         <developerConnection>scm:git:git@github.com:svenmeier/wicket-box.git</developerConnection>
         <url>http://github.com/svenmeier/wicket-box</url>
         <tag>master</tag>
     </scm> 
+
+    <developers>
+        <developer>
+            <id>svenmeier</id>
+            <name>Sven Meier</name>
+            <email>sven@meiers.net</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <issueManagement>
         <url>http://github.com/svenmeier/wicket-box/issues</url>
