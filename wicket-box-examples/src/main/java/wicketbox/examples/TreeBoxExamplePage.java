@@ -30,7 +30,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import wicketbox.repeater.TreeBox;
-import wicketbox.table.theme.BasicTheme;
+import wicketbox.repeater.theme.BasicTheme;
 
 /**
  * @author Sven Meier

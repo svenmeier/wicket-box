@@ -25,7 +25,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColu
 import org.apache.wicket.model.Model;
 
 import wicketbox.repeater.DataBox;
-import wicketbox.table.theme.BasicTheme;
+import wicketbox.repeater.theme.BasicTheme;
 
 /**
  * @author Sven Meier
