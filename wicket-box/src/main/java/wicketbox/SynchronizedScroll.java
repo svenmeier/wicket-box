@@ -24,10 +24,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
- * Synchronize scrolling from a master to a slave.
- * 
- * @see #MASTER
- * @see #SLAVE
+ * Synchronize scrolling between markup.
  * 
  * @author svenmeier
  */

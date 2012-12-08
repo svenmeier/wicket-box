@@ -24,6 +24,8 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 /**
+ * Base class for all box behaviors.
+ * 
  * @author svenmeier
  */
 public abstract class AbstractBoxBehavior extends AbstractDefaultAjaxBehavior {

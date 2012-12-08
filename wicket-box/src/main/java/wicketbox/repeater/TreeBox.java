@@ -24,7 +24,7 @@ import org.apache.wicket.extensions.markup.html.repeater.tree.TableTree;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 
 /**
- * @see DataBox
+ * A boxed {@link TableTree}.
  * 
  * @author Sven Meier
  */

@@ -29,7 +29,7 @@ import org.apache.wicket.util.lang.Args;
 import wicketbox.util.CollectionFormattable;
 
 /**
- * A behavior which allows resizing of columns between a master and a slave..
+ * Allows resizing of table columns.
  * 
  * @author svenmeier
  */

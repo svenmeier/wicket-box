@@ -29,9 +29,7 @@ import wicketbox.Stretch;
 import wicketbox.SynchronizedScroll;
 
 /**
- * @see SynchronizedScroll
- * @see ResizableColumns
- * @see Stretch
+ * A boxed {@link DataTable}-
  * 
  * @author Sven Meier
  */

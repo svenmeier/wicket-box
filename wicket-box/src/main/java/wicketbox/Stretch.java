@@ -21,6 +21,8 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
 /**
+ * Stretch markup.
+ * 
  * @author svenmeier
  */
 public class Stretch extends AbstractBoxBehavior {

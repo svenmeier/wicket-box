@@ -15,6 +15,11 @@
  */
 package wicketbox;
 
+/**
+ * Box orientation.
+ * 
+ * @author svenmeier
+ */
 public enum Orientation {
 	HORIZONTAL, VERTICAL;
 }
