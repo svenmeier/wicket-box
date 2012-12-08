@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Sven Meier
+ * Copyright 2009 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import org.apache.wicket.model.Model;
  */
 public class FooDataProvider implements ISortableDataProvider<Foo, String> {
 
-	public List<Foo> foos = new ArrayList<Foo>();
+	List<Foo> foos = new ArrayList<Foo>();
 
 	{
 		foos.add(new Foo("A"));
@@ -48,7 +48,6 @@ public class FooDataProvider implements ISortableDataProvider<Foo, String> {
 		foos.add(new Foo("M"));
 		foos.add(new Foo("N"));
 		foos.add(new Foo("O"));
-		foos.add(new Foo("P"));
 		foos.add(new Foo("Q"));
 		foos.add(new Foo("R"));
 		foos.add(new Foo("S"));
@@ -81,5 +80,23 @@ public class FooDataProvider implements ISortableDataProvider<Foo, String> {
 	}
 
 	public void detach() {
+	}
+
+	public void remove(Foo foo) {
+		foos.remove(foo);
+	}
+
+	public void add(Foo drag) {
+		foos.add(drag);
+	}
+
+	public void addBefore(Foo drag, Foo drop) {
+		drag.remove();
+		foos.add(foos.indexOf(drop), drag);
+	}
+
+	public void addAfter(Foo drag, Foo drop) {
+		drag.remove();
+		foos.add(foos.indexOf(drop) + 1, drag);
 	}
 }

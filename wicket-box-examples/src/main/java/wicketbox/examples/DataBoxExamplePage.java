@@ -24,15 +24,15 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.model.Model;
 
-import wicketbox.table.DataBox;
+import wicketbox.repeater.DataBox;
 import wicketbox.table.theme.BasicTheme;
 
 /**
  * @author Sven Meier
  */
-public class BoxExamplePage extends ExamplePage {
+public class DataBoxExamplePage extends ExamplePage {
 
-	public BoxExamplePage() {
+	public DataBoxExamplePage() {
 		DataBox<Foo, Void> table = new DataBox<Foo, Void>("table", columns(),
 				new FooDataProvider(), 20);
 		table.addTopToolbar(new HeadersToolbar<Void>(table, null));
@@ -43,9 +43,9 @@ public class BoxExamplePage extends ExamplePage {
 
 	private List<IColumn<Foo, Void>> columns() {
 		List<IColumn<Foo, Void>> columns = new ArrayList<IColumn<Foo, Void>>();
-		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), "name"));
-		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), "name"));
-		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), "name"));
+		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), null));
+		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), null));
+		columns.add(new PropertyColumn<Foo, Void>(Model.of("Name"), null));
 		return columns;
 	}
 }

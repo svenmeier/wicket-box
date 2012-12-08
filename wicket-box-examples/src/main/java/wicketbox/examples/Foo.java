@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Sven Meier
+ * Copyright 2009 Sven Meier
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,110 @@
 package wicketbox.examples;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Sven Meier
  */
-public class Foo implements Serializable {
+public class Foo implements Serializable
+{
 
 	private String name;
 
-	public Foo(String name) {
+	private Foo parent;
+
+	private List<Foo> children = new ArrayList<Foo>();
+
+	public Foo(String name)
+	{
 		this.name = name;
 	}
 
-	public String getName() {
+	public Foo(Foo parent, String name)
+	{
+		this.name = name;
+		
+		parent.add(this);
+	}
+
+	public String getName()
+	{
 		return name;
 	}
 
+	public Foo getParent()
+	{
+		return parent;
+	}
+	
+	public boolean hasChildren()
+	{
+		return !children.isEmpty();
+	}
+
+	public List<Foo> getChildren()
+	{
+		return children;
+	}
+
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return name;
+	}
+
+	public void remove()
+	{
+		if (parent != null) {
+			parent.children.remove(this);
+			parent = null;
+		}
+	}
+
+	public void add(Foo foo) {
+		add(foo, children.size());
+	}
+	
+	public void add(Foo foo, int index)
+	{
+		foo.remove();
+		
+		foo.parent = this;
+		children.add(index, foo);
+	}
+
+	public Foo copy()
+	{
+		Foo copy = new Foo(this.name);
+		
+		for (Foo child : children) {
+			copy.add(child.copy());
+		}
+		
+		return copy;
+	}
+
+	public Foo link()
+	{
+		return new Foo("^" + this.name);
+	}
+
+	public int indexOf(Foo child)
+	{
+		return children.indexOf(child);
+	}
+
+	public boolean isAncestor(Object foo)
+	{
+		if (parent == foo) {
+			return true;
+		}
+		
+		if (parent == null) {
+			return false;
+		} else {
+			return parent.isAncestor(foo);
+		}
 	}
 }
