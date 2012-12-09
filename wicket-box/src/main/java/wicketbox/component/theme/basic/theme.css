@@ -2,23 +2,70 @@
 	position: relative;
 }
 
-.box-theme-basic .top {
+.box-theme-basic .box-table-top {
 	position: absolute;
 	left: 0px;
 	right: 0px;
 	top: 0px;
 	overflow: hidden;
 }
-
-.box-theme-basic .bottom {
+.box-theme-basic .box-table-top > div {
+	display: table;
+	width: 100%;
+	padding-right: 32px; /*	pad for additional width of body's scrollbar */
+}
+.box-theme-basic .box-table-top table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+.box-theme-basic .box-table-top th {
+	overflow: hidden;
+	white-space: nowrap;
+}
+.box-theme-basic .box-table-body {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	overflow: scroll;
+}
+.box-theme-basic .box-table-body > div {
+	display: table;
+	width: 100%;
+}
+.box-theme-basic .box-table-body table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+.box-theme-basic .box-table-body td {
+	overflow: hidden;
+	white-space: nowrap;
+}
+.box-theme-basic .box-table-bottom {
 	position: absolute;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
 	overflow: hidden;
 }
+.box-theme-basic .box-table-resizing {
+	cursor: col-resize;
+}
 
-.box-theme-basic .body {
+.box-theme-basic .box-wizard-form {
+	height: 100%;
+}
+.box-theme-basic .box-wizard-top {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	overflow: hidden;
+}
+.box-theme-basic .box-wizard-body {
 	position: absolute;
 	left: 0px;
 	right: 0px;
@@ -26,38 +73,10 @@
 	bottom: 0px;
 	overflow: auto;
 }
-
-.box-theme-basic .top > div {
-	display: table; /* stretch to nested table's width */
-	width: 100%;
-	padding-right: 32px; /*	pad for additional width of slave's scrollbar */
-}
-
-.box-theme-basic .body > div {
-	display: table; /* stretch to nested table's width */
-	width: 100%;
-}
-
-.box-theme-basic .resizing {
-	cursor: col-resize;
-}
-
-.box-theme-basic table {
-	table-layout: fixed;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-.box-theme-basic th {
+.box-theme-basic .box-wizard-bottom {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 	overflow: hidden;
-	white-space: nowrap;
-}
-
-.box-theme-basic td {
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.box-theme-basic form {
-	height: 100%;
 }

@@ -3,7 +3,7 @@
 	height: 300px;
 }
 
-.example-table .top {
+.example-table .box-table-top {
 	background-color: #DDDDDD;
 }
 
@@ -11,7 +11,7 @@
 	border: 1px solid #AAAAAA;
 }
 
-.wizard-example {
+.example-wizard {
 	height: 300px;
 }
 
@@ -54,7 +54,7 @@
 	background: #aaaaaa;
 }
 
-.resizable-example .resizing {
+.resizable-example .box-table-resizing {
 	cursor: col-resize;
 }
 

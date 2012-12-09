@@ -41,9 +41,12 @@ public class DataBox<T, S> extends DataTable<T, S> {
 			IDataProvider<T> dataProvider, long rowsPerPage) {
 		super(id, columns, dataProvider, rowsPerPage);
 
-		add(new Stretch(Orientation.VERTICAL, ".top", ".body", ".bottom"));
-		add(new ResizableColumns(".top table", ".body table", new WidthsModel()));
-		add(new SynchronizedScroll(Orientation.HORIZONTAL, ".top, .body"));
+		add(new Stretch(Orientation.VERTICAL, ".box-table-top",
+				".box-table-body", ".box-table-bottom"));
+		add(new ResizableColumns(".box-table-top table",
+				".box-table-body table", new WidthsModel()));
+		add(new SynchronizedScroll(Orientation.HORIZONTAL,
+				".box-table-top, .box-table-body"));
 	}
 
 	protected int getWidth(IColumn<?, ?> column) {

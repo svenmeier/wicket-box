@@ -73,9 +73,9 @@
 						var column = findColumn(event);
 
 						if (column != undefined) {
-							$(event.target).closest(selectors.header).addClass('resizing');
+							$(event.target).closest(selectors.header).addClass('box-table-resizing');
 						} else {
-							$(event.target).closest(selectors.header).removeClass('resizing');
+							$(event.target).closest(selectors.header).removeClass('box-table-resizing');
 						}
 					}
 				});

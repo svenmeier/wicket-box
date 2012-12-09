@@ -31,6 +31,7 @@ public class WizardBox extends Wizard {
 	public WizardBox(String id, IWizardModel model) {
 		super(id, model, false);
 
-		add(new Stretch(Orientation.VERTICAL, null, ".body", ".bottom"));
+		add(new Stretch(Orientation.VERTICAL, null, ".box-wizard-body",
+				".box-wizard-bottom"));
 	}
 }
