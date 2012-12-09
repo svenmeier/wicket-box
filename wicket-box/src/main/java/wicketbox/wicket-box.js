@@ -15,19 +15,19 @@
 				var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
 
 				var leading = 0;
-				$(element).children(selectors.leading).each(function(index, child) {
+				$(element).find(selectors.leading).each(function(index, child) {
 					leading += $(child)[method]();
 				});
 							
 				var trailing = 0;
-				$(element).children(selectors.trailing).each(function(index, child) {
+				$(element).find(selectors.trailing).each(function(index, child) {
 					trailing += $(child)[method]();
 				});
 
 				if (orientation == 'HORIZONTAL') {
-					$(element).children(selectors.center).css({'left': leading + 'px', 'right': trailing + 'px'});
+					$(element).find(selectors.center).css({'left': leading + 'px', 'right': trailing + 'px'});
 				} else {
-					$(element).children(selectors.center).css({'top': leading + 'px', 'bottom': trailing + 'px'});
+					$(element).find(selectors.center).css({'top': leading + 'px', 'bottom': trailing + 'px'});
 				}
 			},
 			

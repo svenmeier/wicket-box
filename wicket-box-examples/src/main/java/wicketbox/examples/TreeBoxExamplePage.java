@@ -29,8 +29,8 @@ import org.apache.wicket.extensions.markup.html.repeater.tree.theme.WindowsTheme
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import wicketbox.repeater.TreeBox;
-import wicketbox.repeater.theme.BasicTheme;
+import wicketbox.component.TreeBox;
+import wicketbox.component.theme.BasicTheme;
 
 /**
  * @author Sven Meier

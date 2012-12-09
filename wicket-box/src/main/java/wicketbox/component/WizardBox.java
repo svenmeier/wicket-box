@@ -13,30 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wicketbox.examples;
+package wicketbox.component;
 
-import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.extensions.wizard.IWizardModel;
+import org.apache.wicket.extensions.wizard.Wizard;
+
+import wicketbox.Orientation;
+import wicketbox.Stretch;
 
 /**
+ * A boxed {@link Wizard}-
+ * 
  * @author Sven Meier
  */
-public class WicketApplication extends WebApplication {
-	public WicketApplication() {
-	}
+public class WizardBox extends Wizard {
 
-	@Override
-	protected void init() {
-		getMarkupSettings().setStripWicketTags(true);
+	public WizardBox(String id, IWizardModel model) {
+		super(id, model, false);
 
-		mountPage("tree", TreeBoxExamplePage.class);
-		mountPage("wizard", WizardBoxExamplePage.class);
-
-		mountPage("scroll", SynchronizedScrollExamplePage.class);
-		mountPage("stretch", StretchExamplePage.class);
-		mountPage("resizable", ResizableColumnsExamplePage.class);
-	}
-
-	public Class<DataBoxExamplePage> getHomePage() {
-		return DataBoxExamplePage.class;
+		add(new Stretch(Orientation.VERTICAL, null, ".body", ".bottom"));
 	}
 }

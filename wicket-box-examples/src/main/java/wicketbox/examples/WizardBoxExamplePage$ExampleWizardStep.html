@@ -19,22 +19,9 @@
 		<link href="example.css" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
-    	<p>
-	    	Visit our project on <a href="http://github.com/svenmeier/wicket-box">http://github.com/svenmeier/wicket-box</a>!
-    	</p>
-    	
-    	<p>
-    		<wicket:link>
-	    		<a href="DataBoxExamplePage.html">Box</a> | 
-	    		<a href="TreeBoxExamplePage.html">Tree</a> | 
-	    		<a href="WizardBoxExamplePage.html">Wizard</a> | 
-	    		<a href="SynchronizedScrollExamplePage.html">Synchronized Scroll</a> |
-	    		<a href="ResizableColumnsExamplePage.html">Resizable Columns</a> |
-	    		<a href="StretchExamplePage.html">Stretch</a>
-    		</wicket:link>
-    	</p>
-
-		<wicket:child></wicket:child>
+    	<wicket:panel>
+			<span wicket:id="label"></span>
+    	</wicket:panel>
     </body>
 </html>
 

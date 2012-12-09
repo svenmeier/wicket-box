@@ -15,6 +15,7 @@
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
+	overflow: hidden;
 }
 
 .box-theme-basic .body {
@@ -23,7 +24,7 @@
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .box-theme-basic .top > div {
@@ -55,4 +56,8 @@
 .box-theme-basic td {
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+.box-theme-basic form {
+	height: 100%;
 }

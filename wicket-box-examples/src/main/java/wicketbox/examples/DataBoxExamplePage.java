@@ -24,8 +24,8 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.model.Model;
 
-import wicketbox.repeater.DataBox;
-import wicketbox.repeater.theme.BasicTheme;
+import wicketbox.component.DataBox;
+import wicketbox.component.theme.BasicTheme;
 
 /**
  * @author Sven Meier

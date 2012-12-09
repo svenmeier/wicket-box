@@ -11,6 +11,10 @@
 	border: 1px solid #AAAAAA;
 }
 
+.wizard-example {
+	height: 300px;
+}
+
 .scroll-example .scroll {
 	float: left;
 	width: 200px;
