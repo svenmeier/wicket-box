@@ -25,16 +25,16 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.PropertyModel;
 
-import wicketbox.ResizableColumns;
+import wicketbox.Resize;
 
 /**
  * @author Sven Meier
  */
-public class ResizableColumnsExamplePage extends ExamplePage {
+public class ResizeExamplePage extends ExamplePage {
 
-	public ResizableColumnsExamplePage() {
+	public ResizeExamplePage() {
 		WebMarkupContainer resizable = new WebMarkupContainer("resizable");
-		resizable.add(new ResizableColumns("table.resizable-header",
+		resizable.add(new Resize("table.resizable-header",
 				"table.resizable-body", new WidthsModel()));
 		add(resizable);
 

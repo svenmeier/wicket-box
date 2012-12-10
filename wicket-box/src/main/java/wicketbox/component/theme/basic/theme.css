@@ -1,6 +1,9 @@
 .box-theme-basic {
 	position: relative;
 }
+.box-theme-basic .box-resizing {
+	cursor: col-resize;
+}
 
 .box-theme-basic .box-table-top {
 	position: absolute;
@@ -50,9 +53,6 @@
 	right: 0px;
 	bottom: 0px;
 	overflow: hidden;
-}
-.box-theme-basic .box-table-resizing {
-	cursor: col-resize;
 }
 
 .box-theme-basic .box-wizard-form {

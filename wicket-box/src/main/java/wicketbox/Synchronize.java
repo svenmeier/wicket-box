@@ -28,7 +28,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
  * 
  * @author svenmeier
  */
-public class SynchronizedScroll extends AbstractBoxBehavior {
+public class Synchronize extends AbstractBoxBehavior {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,11 +38,11 @@ public class SynchronizedScroll extends AbstractBoxBehavior {
 
 	private String selector;
 
-	public SynchronizedScroll(Orientation orientation, String selector) {
+	public Synchronize(Orientation orientation, String selector) {
 		this(orientation, selector, Model.of(0));
 	}
 
-	public SynchronizedScroll(Orientation orientation, String selector,
+	public Synchronize(Orientation orientation, String selector,
 			IModel<Integer> scroll) {
 		this.orientation = orientation;
 		this.selector = selector;
@@ -68,7 +68,7 @@ public class SynchronizedScroll extends AbstractBoxBehavior {
 		final int scroll = this.scroll.getObject();
 
 		String initJS = String.format(
-				"wicketbox.synchronizedScroll('%s','%s','%s',%s,%s);", id,
+				"wicketbox.synchronize('%s','%s','%s',%s,%s);", id,
 				orientation.name(), selector, persist, scroll);
 
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
@@ -78,7 +78,7 @@ public class SynchronizedScroll extends AbstractBoxBehavior {
 	 * @see AbstractBoxBehavior#persistInDocument(String)
 	 */
 	protected String getPersist(Component component) {
-		return persistInDocument("synchronizedScroll:"
+		return persistInDocument("synchronize:"
 				+ component.getPageRelativePath());
 	}
 

@@ -20,16 +20,16 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 
 import wicketbox.Orientation;
-import wicketbox.SynchronizedScroll;
+import wicketbox.Synchronize;
 
 /**
  * @author Sven Meier
  */
-public class SynchronizedScrollExamplePage extends ExamplePage {
+public class SynchronizeExamplePage extends ExamplePage {
 
-	public SynchronizedScrollExamplePage() {
+	public SynchronizeExamplePage() {
 		WebMarkupContainer scroll = new WebMarkupContainer("scroll");
-		scroll.add(new SynchronizedScroll(Orientation.VERTICAL, ".scroll"));
+		scroll.add(new Synchronize(Orientation.VERTICAL, ".scroll"));
 		add(scroll);
 
 		scroll.add(new Label("left", new StringResourceModel("lorem", null)));

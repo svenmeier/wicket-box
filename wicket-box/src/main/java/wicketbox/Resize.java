@@ -33,7 +33,7 @@ import wicketbox.util.CollectionFormattable;
  * 
  * @author svenmeier
  */
-public class ResizableColumns extends AbstractBoxBehavior {
+public class Resize extends AbstractBoxBehavior {
 
 	/**
 	 * Default maximum age for cookie persistence.
@@ -48,7 +48,7 @@ public class ResizableColumns extends AbstractBoxBehavior {
 
 	private String bodySelector;
 
-	public ResizableColumns(String headerSelector, String bodySelector,
+	public Resize(String headerSelector, String bodySelector,
 			IModel<List<Integer>> widths) {
 		Args.notNull(widths, "widths");
 
@@ -68,11 +68,11 @@ public class ResizableColumns extends AbstractBoxBehavior {
 	public final void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
 
-		String initJS = String
-				.format("wicketbox.resizableColumns('%s',{'header': '%s', 'body': '%s'},%s,%s);",
-						component.getMarkupId(), headerSelector, bodySelector,
-						getPersist(component), new CollectionFormattable(
-								this.widths.getObject()));
+		String initJS = String.format(
+				"wicketbox.resize('%s',{header: '%s', body: '%s'},%s,%s);",
+				component.getMarkupId(), headerSelector, bodySelector,
+				getPersist(component),
+				new CollectionFormattable(this.widths.getObject()));
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 
@@ -80,8 +80,8 @@ public class ResizableColumns extends AbstractBoxBehavior {
 	 * @see AbstractBoxBehavior#persistInCookie(String)
 	 */
 	protected String getPersist(Component component) {
-		return persistInCookie(
-				"resizableColumns:" + component.getPageRelativePath(), MAX_AGE);
+		return persistInCookie("resize:" + component.getPageRelativePath(),
+				MAX_AGE);
 	}
 
 	@Override

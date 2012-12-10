@@ -24,9 +24,9 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
 import wicketbox.Orientation;
-import wicketbox.ResizableColumns;
+import wicketbox.Resize;
 import wicketbox.Stretch;
-import wicketbox.SynchronizedScroll;
+import wicketbox.Synchronize;
 
 /**
  * A boxed {@link DataTable}-
@@ -43,9 +43,9 @@ public class DataBox<T, S> extends DataTable<T, S> {
 
 		add(new Stretch(Orientation.VERTICAL, ".box-table-top",
 				".box-table-body", ".box-table-bottom"));
-		add(new ResizableColumns(".box-table-top table",
+		add(new Resize(".box-table-top table",
 				".box-table-body table", new WidthsModel()));
-		add(new SynchronizedScroll(Orientation.HORIZONTAL,
+		add(new Synchronize(Orientation.HORIZONTAL,
 				".box-table-top, .box-table-body"));
 	}
 

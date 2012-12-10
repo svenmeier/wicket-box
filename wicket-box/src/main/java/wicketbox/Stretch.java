@@ -52,7 +52,7 @@ public class Stretch extends AbstractBoxBehavior {
 		final String id = component.getMarkupId();
 
 		String initJS = String
-				.format("wicketbox.stretch('%s', '%s', {'leading': '%s', 'center': '%s', 'trailing': '%s'});",
+				.format("wicketbox.stretch('%s','%s',{leading: '%s', center: '%s', trailing: '%s'});",
 						id, orientation, leadingSelector, centerSelector,
 						trailingSelector);
 		response.render(OnDomReadyHeaderItem.forScript(initJS));

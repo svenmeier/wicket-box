@@ -31,7 +31,7 @@
 				}
 			},
 			
-			synchronizedScroll: function(id, orientation, selector, persist, value) {
+			synchronize: function(id, orientation, selector, persist, value) {
 				var element = document.getElementById(id);
 				var synchronizing;
 				
@@ -62,7 +62,7 @@
 				};				
 			},
 
-			resizableColumns: function(id, selectors, persist, widths) {
+			resize: function(id, selectors, persist, widths) {
 				var element = document.getElementById(id);
 				var resizing;
 
@@ -73,9 +73,9 @@
 						var column = findColumn(event);
 
 						if (column != undefined) {
-							$(event.target).closest(selectors.header).addClass('box-table-resizing');
+							$(event.target).closest(selectors.header).addClass('box-resizing');
 						} else {
-							$(event.target).closest(selectors.header).removeClass('box-table-resizing');
+							$(event.target).closest(selectors.header).removeClass('box-resizing');
 						}
 					}
 				});
