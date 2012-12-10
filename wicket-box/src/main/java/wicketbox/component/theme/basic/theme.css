@@ -58,13 +58,6 @@
 .box-theme-basic .box-wizard-form {
 	height: 100%;
 }
-.box-theme-basic .box-wizard-top {
-	position: absolute;
-	left: 0px;
-	right: 0px;
-	top: 0px;
-	overflow: hidden;
-}
 .box-theme-basic .box-wizard-body {
 	position: absolute;
 	left: 0px;

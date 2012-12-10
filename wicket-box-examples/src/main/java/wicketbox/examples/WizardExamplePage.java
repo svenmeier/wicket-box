@@ -18,7 +18,8 @@ package wicketbox.examples;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.WizardModel;
 import org.apache.wicket.extensions.wizard.WizardStep;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.ResourceModel;
 
 import wicketbox.component.WizardBox;
@@ -27,9 +28,9 @@ import wicketbox.component.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class WizardBoxExamplePage extends ExamplePage {
+public class WizardExamplePage extends ExamplePage {
 
-	public WizardBoxExamplePage() {
+	public WizardExamplePage() {
 		WizardBox wizard = new WizardBox("wizard", newWizardModel());
 		wizard.add(new BasicTheme());
 		add(wizard);
@@ -38,21 +39,50 @@ public class WizardBoxExamplePage extends ExamplePage {
 	private IWizardModel newWizardModel() {
 		WizardModel wizard = new WizardModel();
 
-		wizard.add(new ExampleWizardStep("one"));
-		wizard.add(new ExampleWizardStep("two"));
-		wizard.add(new ExampleWizardStep("three"));
-		wizard.add(new ExampleWizardStep("four"));
+		wizard.add(new ExampleWizardStep(1));
+		wizard.add(new ExampleWizardStep(2));
+		wizard.add(new ExampleWizardStep(3));
+		wizard.add(new ExampleWizardStep(4));
 
 		return wizard;
 	}
 
 	private class ExampleWizardStep extends WizardStep {
 
-		public ExampleWizardStep(String key) {
-			super(new ResourceModel(key + ".title"), new ResourceModel(key
+		public ExampleWizardStep(int index) {
+			super(new ResourceModel(index + ".title"), new ResourceModel(index
 					+ ".summary"));
 
-			add(new Label("label", new ResourceModel(key + ".label")));
+			add(new MultiLineLabel("label", new TimesModel(index)));
+		}
+	}
+
+	private class TimesModel extends AbstractReadOnlyModel<String> {
+
+		private int i;
+		private ResourceModel model;
+
+		public TimesModel(int i) {
+			this.i = i;
+			this.model = new ResourceModel("lorem");
+		}
+
+		@Override
+		public void detach() {
+			super.detach();
+
+			this.model.detach();
+		}
+
+		@Override
+		public String getObject() {
+			StringBuilder string = new StringBuilder();
+
+			for (int i = 0; i < this.i; i++) {
+				string.append(model.getObject());
+			}
+
+			return string.toString();
 		}
 	}
 }
