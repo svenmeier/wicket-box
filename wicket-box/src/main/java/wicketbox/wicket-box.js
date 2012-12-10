@@ -39,8 +39,9 @@
 				
 				loadScroll();
 				
+				// scroll event does not bubble :(
 				$(element).find(selector).on('scroll', function(event) {
-					value = $(event.target)[method]();
+					value = $(event.target).closest(selector)[method]();
 						
 					$(element).children(selector).each(function(index, child) {
 						if ($(child)[method]() != value) {
@@ -106,6 +107,9 @@
 							newWidth = wicketbox.MIN;
 						}
 						cols.attr('width', newWidth);
+						
+						// on Opera and IE resizing does not trigger a possible scroll event :(
+						$(element).find(selectors.body).trigger('scroll');
 					});
 					
 					$(document).on('mouseup.wicketbox', function(event) {
