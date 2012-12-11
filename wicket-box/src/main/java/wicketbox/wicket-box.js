@@ -39,7 +39,7 @@
 				
 				loadScroll();
 				
-				// scroll event does not bubble :(
+				// scroll events do not bubble :(
 				$(element).find(selector).on('scroll', function(event) {
 					value = $(event.target).closest(selector)[method]();
 						
@@ -108,7 +108,7 @@
 						}
 						cols.attr('width', newWidth);
 						
-						// on Opera and IE resizing does not trigger a possible scroll event :(
+						// Opera does not trigger scroll events, even if resizing forces a scroll :(
 						$(element).find(selectors.body).trigger('scroll');
 					});
 					

@@ -14,7 +14,6 @@
 }
 .box-theme-basic .box-table-top > div {
 	display: table;
-	width: 100%;
 	padding-right: 32px; /*	pad for additional width of body's scrollbar */
 }
 .box-theme-basic .box-table-top table {
@@ -36,14 +35,13 @@
 }
 .box-theme-basic .box-table-body > div {
 	display: table;
-	width: 100%;
 }
 .box-theme-basic .box-table-body table {
 	table-layout: fixed;
 	border-collapse: collapse;
 	width: 100%;
 }
-.box-theme-basic .box-table-body td {
+.box-theme-basic .box-table-body td > div {
 	overflow: hidden;
 	white-space: nowrap;
 }
