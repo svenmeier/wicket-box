@@ -160,7 +160,8 @@
 							}
 							col.attr('width', width);
 						});
-						
+
+						// Firefox wants an additional column to take additional space 
 						colgroup.append('<col>');
 					});
 				};
