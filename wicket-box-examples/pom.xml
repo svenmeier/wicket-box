@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.wicket-box</groupId>
+        <groupId>com.github.svenmeier.wicket-box</groupId>
         <artifactId>wicket-box-parent</artifactId>
         <version>0.6-SNAPSHOT</version>
     </parent>
@@ -15,7 +15,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.github.wicket-box</groupId>
+			<groupId>com.github.svenmeier.wicket-box</groupId>
 			<artifactId>wicket-box</artifactId>
 			<version>${project.version}</version>
 		</dependency>
