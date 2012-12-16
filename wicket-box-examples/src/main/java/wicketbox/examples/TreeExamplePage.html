@@ -19,12 +19,24 @@
 		<link href="example.css" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
-    
     	<wicket:extend>
+    		<wicket:link>
+	    		<p>
+	    			TreeBox combines three different behaviors to enhance a standard Wicket TableTree:
+	    		</p>
+	    		<dl>
+	    			<dt><a href="ScrollExamplePage.html">Scroll</a></dt>
+	    			<dd>The horizontal scroll position is synchronized between the header and the body of the table,
+	    			    by default it is persisted in the document (i.e. the scroll position is kept across ajax updates)</dd>
+	    			<dt><a href="ResizeExamplePage.html">Resize</a></dt>
+	    			<dd>Columns are resizable, by default the widths are persisted in a cookie</dd>
+	    			<dt><a href="StretchExamplePage.html">Stretch</a></dt>
+	    			<dd>The table stretches to the specified CSS height, i.e. the footer is always attached to the bottom of the available area</dd>
+	    		</dl>
+    		</wicket:link>
 			<div wicket:id="tree" class="example-table">
 			</div>
     	</wicket:extend>
-
     </body>
 </html>
 

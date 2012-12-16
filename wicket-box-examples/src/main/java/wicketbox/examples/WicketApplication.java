@@ -31,7 +31,7 @@ public class WicketApplication extends WebApplication {
 		mountPage("tree", TreeExamplePage.class);
 		mountPage("wizard", WizardExamplePage.class);
 
-		mountPage("scroll", SynchronizeExamplePage.class);
+		mountPage("scroll", ScrollExamplePage.class);
 		mountPage("stretch", StretchExamplePage.class);
 		mountPage("resizable", ResizeExamplePage.class);
 	}

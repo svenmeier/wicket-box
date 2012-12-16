@@ -15,21 +15,29 @@
  */
 package wicketbox.examples;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 
 import wicketbox.Orientation;
-import wicketbox.Synchronize;
+import wicketbox.Scroll;
 
 /**
  * @author Sven Meier
  */
-public class SynchronizeExamplePage extends ExamplePage {
+public class ScrollExamplePage extends ExamplePage {
 
-	public SynchronizeExamplePage() {
+	public ScrollExamplePage() {
 		WebMarkupContainer scroll = new WebMarkupContainer("scroll");
-		scroll.add(new Synchronize(Orientation.VERTICAL, ".scroll"));
+		scroll.add(new Scroll(Orientation.VERTICAL, ".scroll") {
+			@Override
+			protected String getPersist(Component component) {
+				return persistInCookie(
+						"scroll:" + component.getPageRelativePath(),
+						30 * 24 * 60 * 60);
+			}
+		});
 		add(scroll);
 
 		scroll.add(new Label("left", new StringResourceModel("lorem", null)));

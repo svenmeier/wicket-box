@@ -41,7 +41,7 @@ public abstract class AbstractBoxBehavior extends AbstractDefaultAjaxBehavior {
 	}
 
 	public static String persistNot(Component component) {
-		return String.format("wicketbox.persistNot()", component.getPath());
+		return String.format("wicketbox.persistNot()");
 	}
 
 	public static String persistInCookie(String key, int maxAge) {

@@ -24,11 +24,11 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
- * Synchronize scrolling between markup.
+ * Scroll markup.
  * 
  * @author svenmeier
  */
-public class Synchronize extends AbstractBoxBehavior {
+public class Scroll extends AbstractBoxBehavior {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,11 +38,11 @@ public class Synchronize extends AbstractBoxBehavior {
 
 	private String selector;
 
-	public Synchronize(Orientation orientation, String selector) {
+	public Scroll(Orientation orientation, String selector) {
 		this(orientation, selector, Model.of(0));
 	}
 
-	public Synchronize(Orientation orientation, String selector,
+	public Scroll(Orientation orientation, String selector,
 			IModel<Integer> scroll) {
 		this.orientation = orientation;
 		this.selector = selector;
@@ -68,18 +68,16 @@ public class Synchronize extends AbstractBoxBehavior {
 		final int scroll = this.scroll.getObject();
 
 		String initJS = String.format(
-				"wicketbox.synchronize('%s','%s','%s',%s,%s);", id,
+				"wicketbox.scroll('%s','%s','%s',%s,%s);", id,
 				orientation.name(), selector, persist, scroll);
 
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 
 	/**
-	 * @see AbstractBoxBehavior#persistInDocument(String)
 	 */
 	protected String getPersist(Component component) {
-		return persistInDocument("synchronize:"
-				+ component.getPageRelativePath());
+		return persistNot(component);
 	}
 
 	/**
@@ -96,9 +94,9 @@ public class Synchronize extends AbstractBoxBehavior {
 		onScrolled();
 	}
 
-	/**
+/**
 	 * See
-	 * {@link AbstractBoxBehavior#persistOnServer(String, java.nio.channels.Channel)}
+	 * {@link AbstractBoxBehavior#persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
 	 * 
 	 * @param value
 	 */

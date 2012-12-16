@@ -18,6 +18,7 @@ package wicketbox.component;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
@@ -25,8 +26,8 @@ import org.apache.wicket.model.IModel;
 
 import wicketbox.Orientation;
 import wicketbox.Resize;
+import wicketbox.Scroll;
 import wicketbox.Stretch;
-import wicketbox.Synchronize;
 
 /**
  * A boxed {@link DataTable}-
@@ -34,6 +35,8 @@ import wicketbox.Synchronize;
  * @author Sven Meier
  */
 public class DataBox<T, S> extends DataTable<T, S> {
+
+	private static final int MAX_AGE = 30 * 24 * 60 * 60;
 
 	private static final int DEFAULT_WIDTH = 64;
 
@@ -43,10 +46,21 @@ public class DataBox<T, S> extends DataTable<T, S> {
 
 		add(new Stretch(Orientation.VERTICAL, ".box-table-top",
 				".box-table-body", ".box-table-bottom"));
-		add(new Resize(".box-table-top table",
-				".box-table-body table", new WidthsModel()));
-		add(new Synchronize(Orientation.HORIZONTAL,
-				".box-table-top, .box-table-body"));
+
+		add(new Resize(".box-table-top table", ".box-table-body table",
+				new WidthsModel()) {
+			protected String getPersist(Component component) {
+				return persistInCookie(
+						"resize:" + component.getPageRelativePath(), MAX_AGE);
+			}
+		});
+
+		add(new Scroll(Orientation.HORIZONTAL,
+				".box-table-top, .box-table-body") {
+			protected String getPersist(Component component) {
+				return persistInDocument("scroll:" + component.getMarkupId());
+			}
+		});
 	}
 
 	protected int getWidth(IColumn<?, ?> column) {

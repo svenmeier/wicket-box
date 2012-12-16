@@ -18,6 +18,7 @@ package wicketbox.examples;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -35,7 +36,13 @@ public class ResizeExamplePage extends ExamplePage {
 	public ResizeExamplePage() {
 		WebMarkupContainer resizable = new WebMarkupContainer("resizable");
 		resizable.add(new Resize("table.resizable-header",
-				"table.resizable-body", new WidthsModel()));
+				"table.resizable-body", new WidthsModel()) {
+			protected String getPersist(Component component) {
+				return persistInCookie(
+						"resize:" + component.getPageRelativePath(),
+						30 * 24 * 60 * 60);
+			}
+		});
 		add(resizable);
 
 		resizable.add(new ListView<Foo>("row", new FoosModel()) {

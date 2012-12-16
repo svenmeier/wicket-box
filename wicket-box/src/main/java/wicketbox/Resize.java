@@ -35,11 +35,6 @@ import wicketbox.util.CollectionFormattable;
  */
 public class Resize extends AbstractBoxBehavior {
 
-	/**
-	 * Default maximum age for cookie persistence.
-	 */
-	private static final int MAX_AGE = 30 * 24 * 60 * 60;
-
 	private static final long serialVersionUID = 1L;
 
 	private IModel<List<Integer>> widths;
@@ -77,11 +72,9 @@ public class Resize extends AbstractBoxBehavior {
 	}
 
 	/**
-	 * @see AbstractBoxBehavior#persistInCookie(String)
 	 */
 	protected String getPersist(Component component) {
-		return persistInCookie("resize:" + component.getPageRelativePath(),
-				MAX_AGE);
+		return persistNot(component);
 	}
 
 	@Override

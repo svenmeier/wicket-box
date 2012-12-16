@@ -31,7 +31,7 @@
 				}
 			},
 			
-			synchronize: function(id, orientation, selector, persist, value) {
+			scroll: function(id, orientation, selector, persist, value) {
 				var element = document.getElementById(id);
 				var synchronizing;
 				
