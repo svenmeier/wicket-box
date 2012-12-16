@@ -87,7 +87,7 @@ public class Resize extends AbstractBoxBehavior {
 	 * @see #onScrolled()
 	 */
 	@Override
-	protected void respond(AjaxRequestTarget target) {
+	protected final void respond(AjaxRequestTarget target) {
 		final RequestCycle requestCycle = RequestCycle.get();
 
 		final String parameter = requestCycle.getRequest()
