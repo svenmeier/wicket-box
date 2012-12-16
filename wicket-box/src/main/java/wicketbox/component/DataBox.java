@@ -24,13 +24,24 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import wicketbox.AbstractBoxBehavior;
 import wicketbox.Orientation;
 import wicketbox.Resize;
 import wicketbox.Scroll;
 import wicketbox.Stretch;
 
 /**
- * A boxed {@link DataTable}-
+ * A {@link DataTable} with the following enhancements:
+ * <ul>
+ * <li>the body is {@link Stretch}ed so that the footer is attached to the
+ * bottom</li>
+ * <li>columns can be {@link Resize}ed, the widths are persisted in a cookie</li>
+ * <li> {@link Scroll}ing between header and body is synchronized, the position
+ * is persisted in the document</li>
+ * </ul>
+ * 
+ * @see AbstractBoxBehavior#persistInCookie(String, int)
+ * @see AbstractBoxBehavior#persistInDocument(String)
  * 
  * @author Sven Meier
  */
@@ -63,6 +74,13 @@ public class DataBox<T, S> extends DataTable<T, S> {
 		});
 	}
 
+	/**
+	 * Get the initial width for the given column.
+	 * 
+	 * @param column
+	 *            the column
+	 * @return initial width
+	 */
 	protected int getWidth(IColumn<?, ?> column) {
 		return DEFAULT_WIDTH;
 	}

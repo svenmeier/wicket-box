@@ -22,7 +22,8 @@ import wicketbox.Orientation;
 import wicketbox.Stretch;
 
 /**
- * A boxed {@link Wizard}-
+ * A {@link Wizard} wich steps are {@link Stretch}ed so that the buttons are
+ * attached to the bottom.
  * 
  * @author Sven Meier
  */

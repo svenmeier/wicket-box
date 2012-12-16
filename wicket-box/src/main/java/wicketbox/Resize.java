@@ -72,11 +72,20 @@ public class Resize extends AbstractBoxBehavior {
 	}
 
 	/**
+	 * Hook method to decide where widths should be persisted.
+	 * 
+	 * @return does not persist
+	 * @see #persistNot(Component)
 	 */
 	protected String getPersist(Component component) {
 		return persistNot(component);
 	}
 
+	/**
+	 * Sets the new widths into the model.
+	 * 
+	 * @see #onScrolled()
+	 */
 	@Override
 	protected void respond(AjaxRequestTarget target) {
 		final RequestCycle requestCycle = RequestCycle.get();
@@ -99,8 +108,12 @@ public class Resize extends AbstractBoxBehavior {
 	}
 
 	/**
-	 * See
-	 * {@link AbstractBoxBehavior#persistOnServer(String, java.nio.channels.Channel)}
+	 * Called when the widths have changed and this behavior uses server
+	 * persistence.
+	 * 
+	 * @see #persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
+	 * 
+	 * @param value
 	 */
 	protected void onResized(AjaxRequestTarget target) {
 	}

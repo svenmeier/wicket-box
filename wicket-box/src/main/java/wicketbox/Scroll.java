@@ -34,7 +34,7 @@ public class Scroll extends AbstractBoxBehavior {
 
 	private Orientation orientation;
 
-	private IModel<Integer> scroll;
+	private IModel<Integer> position;
 
 	private String selector;
 
@@ -43,18 +43,18 @@ public class Scroll extends AbstractBoxBehavior {
 	}
 
 	public Scroll(Orientation orientation, String selector,
-			IModel<Integer> scroll) {
+			IModel<Integer> position) {
 		this.orientation = orientation;
 		this.selector = selector;
 
-		this.scroll = scroll;
+		this.position = position;
 	}
 
 	@Override
 	public void detach(Component component) {
 		super.detach(component);
 
-		scroll.detach();
+		position.detach();
 	}
 
 	@Override
@@ -65,38 +65,47 @@ public class Scroll extends AbstractBoxBehavior {
 
 		final String persist = getPersist(component);
 
-		final int scroll = this.scroll.getObject();
+		final int position = this.position.getObject();
 
 		String initJS = String.format(
 				"wicketbox.scroll('%s','%s','%s',%s,%s);", id,
-				orientation.name(), selector, persist, scroll);
+				orientation.name(), selector, persist, position);
 
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 
 	/**
+	 * Hook method to decide where position should be persisted.
+	 * 
+	 * @return does not persist
+	 * @see #persistNot(Component)
 	 */
 	protected String getPersist(Component component) {
 		return persistNot(component);
 	}
 
 	/**
+	 * Sets the new position into the model.
+	 * 
+	 * @see #onScrolled()
 	 */
 	@Override
-	protected void respond(AjaxRequestTarget target) {
+	protected final void respond(AjaxRequestTarget target) {
 		final RequestCycle requestCycle = RequestCycle.get();
 
-		final int scroll = requestCycle.getRequest().getRequestParameters()
+		final int position = requestCycle.getRequest().getRequestParameters()
 				.getParameterValue("value").toInt();
 
-		this.scroll.setObject(scroll);
+		this.position.setObject(position);
 
 		onScrolled();
 	}
 
-/**
-	 * See
-	 * {@link AbstractBoxBehavior#persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
+	/**
+	 * Called when the scroll position has changed and this behavior uses server
+	 * persistence.
+	 * 
+	 * @see #persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
 	 * 
 	 * @param value
 	 */
