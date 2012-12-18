@@ -39,6 +39,8 @@ import wicketbox.Stretch;
  * <li> {@link Scroll}ing between header and body is synchronized, the position
  * is persisted in the document</li>
  * </ul>
+ * Note: Unlike {@link DataTable} this subclass must not be bound to a
+ * {@code <table>} markup tag.
  * 
  * @see AbstractBoxBehavior#persistInCookie(String, int)
  * @see AbstractBoxBehavior#persistInDocument(String)
