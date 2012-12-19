@@ -11,7 +11,7 @@ Enhancements for your [Wicket](http://wicket.apache.org) components:
 - synchronized scroll between markup
 - tested in Firefox, Safari, Chrome, Opera
 
-See our live examples on [http://wicket-box.appspot.com](http://wicket-box.appspot.com) (beware - very slow!).
+See our live examples on [http://wicket-box.appspot.com](http://wicket-box.appspot.com).
 
 Themes
 ------
@@ -24,7 +24,7 @@ Components
 ----------
 
 - DataBox is a DataTable extension which bundles all behaviors into a highly dynamic table
-  with fixed headers, column resizing and its body stretched to the available size
+  with fixed headers, column resizing and its body stretching to the available size
 - TreeBox is the pendant for TableTree 
 - WizardBox streches its content so its control buttons are pinned to the bottom of its markup area.
 
