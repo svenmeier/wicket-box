@@ -33,7 +33,7 @@ public class WicketApplication extends WebApplication {
 
 		mountPage("scroll", ScrollExamplePage.class);
 		mountPage("stretch", StretchExamplePage.class);
-		mountPage("resizable", ResizeExamplePage.class);
+		mountPage("resize", ResizeExamplePage.class);
 	}
 
 	public Class<DataExamplePage> getHomePage() {
