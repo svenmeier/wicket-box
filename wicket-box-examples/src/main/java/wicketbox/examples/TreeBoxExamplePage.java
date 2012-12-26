@@ -35,9 +35,9 @@ import wicketbox.component.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class TreeExamplePage extends ExamplePage {
+public class TreeBoxExamplePage extends ExamplePage {
 
-	public TreeExamplePage() {
+	public TreeBoxExamplePage() {
 		TreeBox<Foo, Void> tree = new TreeBox<Foo, Void>("tree", columns(),
 				new FooTreeProvider(), 10) {
 			@Override

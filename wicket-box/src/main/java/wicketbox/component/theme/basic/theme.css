@@ -1,8 +1,12 @@
 .box-theme-basic {
 	position: relative;
 }
-.box-theme-basic .box-resizing {
+.box-theme-basic .box-resizing-HORIZONTAL {
 	cursor: col-resize;
+}
+
+.box-theme-basic .box-resizing-VERTICAL {
+	cursor: row-resize;
 }
 
 .box-theme-basic .box-table-top {
@@ -68,6 +72,31 @@
 	position: absolute;
 	left: 0px;
 	right: 0px;
+	bottom: 0px;
+	overflow: hidden;
+}
+
+.box-theme-basic .box-split-main {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	overflow: hidden;
+}
+
+.box-theme-basic .box-split-divider {
+	position: absolute;
+	width: 8px;
+	top: 0px;
+	bottom: 0px;
+	overflow: hidden;
+	cursor: col-resize;
+}
+
+.box-theme-basic .box-split-remainder {
+	position: absolute;
+	right: 0px;
+	top: 0px;
 	bottom: 0px;
 	overflow: hidden;
 }

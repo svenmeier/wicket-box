@@ -30,9 +30,9 @@ import wicketbox.component.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class DataExamplePage extends ExamplePage {
+public class DataBoxExamplePage extends ExamplePage {
 
-	public DataExamplePage() {
+	public DataBoxExamplePage() {
 		DataBox<Foo, Void> table = new DataBox<Foo, Void>("table", columns(),
 				new FooDataProvider(), 20);
 		table.addTopToolbar(new HeadersToolbar<Void>(table, null));

@@ -15,6 +15,19 @@
 	height: 400px;
 }
 
+.example-split {
+	width: 100%;
+	height: 300px;
+}
+
+.example-split .box-split-main {
+	border: 1px solid #AAAAAA;
+}
+
+.example-split .box-split-remainder {
+	border: 1px solid #AAAAAA;
+}
+
 .scroll-example .scroll {
 	float: left;
 	width: 200px;

@@ -84,7 +84,7 @@ public class Resize extends AbstractBoxBehavior {
 	/**
 	 * Sets the new widths into the model.
 	 * 
-	 * @see #onScrolled()
+	 * @see #onResized()
 	 */
 	@Override
 	protected final void respond(AjaxRequestTarget target) {

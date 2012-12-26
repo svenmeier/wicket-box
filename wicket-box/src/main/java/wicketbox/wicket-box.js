@@ -8,7 +8,7 @@
 			MIN: 16,
 			
 			MARGIN: 4,
-
+			
 			stretch: function(id, orientation, selectors) {
 				var element = document.getElementById(id);
 
@@ -31,7 +31,78 @@
 				}
 			},
 			
-			scroll: function(id, orientation, selector, persist, value) {
+			split: function(id, orientation, selectors, persist, size) {
+				var element = document.getElementById(id);
+
+				var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
+
+				loadSize();
+
+				apply();
+				
+				$(element).find(selectors.divider).on('mousedown', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					
+					resize(event.pageX, event.pageY);
+				});
+				
+				function resize(initialX, initialY) {
+					var divider = $(element).find(selectors.divider);
+					
+					var initialSize = size;
+						
+					$(document).on('mousemove.wicketbox', function(event) {
+						event.preventDefault();
+						event.stopPropagation();
+						
+						if (orientation == 'HORIZONTAL') {
+							size = initialSize + (event.pageX - initialX);
+						} else {
+							size = initialSize + (event.pageY - initialY);
+						}
+						if (size < wicketbox.MIN) {
+							size = wicketbox.MIN;
+						}
+						apply();
+					});
+					
+					$(document).on('mouseup.wicketbox', function(event) {
+						event.preventDefault();
+						event.stopPropagation();
+
+						$(document).off('.wicketbox');
+
+						saveSize();
+					});					
+				};
+
+				function apply() {
+					if (orientation == 'HORIZONTAL') {
+						$(element).find(selectors.main).css({'width': size + 'px'});
+
+						var divider = $(element).find(selectors.divider);
+						divider.css({'left': size + 'px'});
+						$(element).find(selectors.remainder).css({'left': (size + divider.outerWidth()) + 'px'});
+					} else {
+						$(element).find(selectors.main).css({'height': size + 'px'});
+						
+						var divider = $(element).find(selectors.divider);
+						divider.css({'top': size + 'px'});
+						$(element).find(selectors.remainder).css({'top': (size + divider.outerHeight()) + 'px'});
+					}
+				};
+				
+				function loadSize() {
+					size = parseInt(persist()) || size;
+				};
+				
+				function saveSize() {
+					persist(size);
+				};				
+			},
+			
+			scroll: function(id, orientation, selector, persist, position) {
 				var element = document.getElementById(id);
 				var synchronizing;
 				
@@ -41,11 +112,11 @@
 				
 				// scroll events do not bubble :(
 				$(element).find(selector).on('scroll', function(event) {
-					value = $(event.target).closest(selector)[method]();
+					position = $(event.target).closest(selector)[method]();
 						
 					$(element).children(selector).each(function(index, child) {
-						if ($(child)[method]() != value) {
-							$(child)[method](value);
+						if ($(child)[method]() != position) {
+							$(child)[method](position);
 						}
 					});
 					
@@ -53,13 +124,13 @@
 				});
 				
 				function loadScroll() {
-					value = parseInt(persist()) || value;
+					position = parseInt(persist()) || position;
 					
-					$(element).find(selector)[method](value);
+					$(element).find(selector)[method](position);
 				};
 
 				function saveScroll() {
-					persist(value);
+					persist(position);
 				};				
 			},
 
@@ -69,19 +140,19 @@
 
 				loadWidths();
 
-				$(element).on('mousemove.wicketbox', selectors.header, function(event) {				
+				$(element).on('mousemove', selectors.header, function(event) {				
 					if (!resizing) {
 						var column = findColumn(event);
 
 						if (column != undefined) {
-							$(event.target).closest(selectors.header).addClass('box-resizing');
+							$(event.target).closest(selectors.header).addClass('box-resizing-HORIZONTAL');
 						} else {
-							$(event.target).closest(selectors.header).removeClass('box-resizing');
+							$(event.target).closest(selectors.header).removeClass('box-resizing-HORIZONTAL');
 						}
 					}
 				});
 				
-				$(element).on('mousedown.wicketbox', selectors.header + ' tr', function(event) {
+				$(element).on('mousedown', selectors.header + ' tr', function(event) {
 					var column = findColumn(event);
 
 					if (column != undefined) {

@@ -28,15 +28,12 @@ public class WicketApplication extends WebApplication {
 	protected void init() {
 		getMarkupSettings().setStripWicketTags(true);
 
-		mountPage("tree", TreeExamplePage.class);
-		mountPage("wizard", WizardExamplePage.class);
-
-		mountPage("scroll", ScrollExamplePage.class);
-		mountPage("stretch", StretchExamplePage.class);
-		mountPage("resize", ResizeExamplePage.class);
+		mountPage("tree", TreeBoxExamplePage.class);
+		mountPage("wizard", WizardBoxExamplePage.class);
+		mountPage("split", SplitBoxExamplePage.class);
 	}
 
-	public Class<DataExamplePage> getHomePage() {
-		return DataExamplePage.class;
+	public Class<DataBoxExamplePage> getHomePage() {
+		return DataBoxExamplePage.class;
 	}
 }

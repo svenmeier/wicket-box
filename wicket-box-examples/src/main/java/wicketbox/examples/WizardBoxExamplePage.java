@@ -28,9 +28,9 @@ import wicketbox.component.theme.BasicTheme;
 /**
  * @author Sven Meier
  */
-public class WizardExamplePage extends ExamplePage {
+public class WizardBoxExamplePage extends ExamplePage {
 
-	public WizardExamplePage() {
+	public WizardBoxExamplePage() {
 		WizardBox wizard = new WizardBox("wizard", newWizardModel());
 		wizard.add(new BasicTheme());
 		add(wizard);
