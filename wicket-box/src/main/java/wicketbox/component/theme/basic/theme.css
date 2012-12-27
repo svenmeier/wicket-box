@@ -81,7 +81,7 @@
 	left: 0px;
 	top: 0px;
 	bottom: 0px;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .box-theme-basic .box-split-divider {
@@ -98,5 +98,5 @@
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
-	overflow: hidden;
+	overflow: auto;
 }
