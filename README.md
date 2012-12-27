@@ -5,11 +5,12 @@ Enhancements for your [Wicket](http://wicket.apache.org) components:
 
 - dynamic behaviors utilizing Wicket's build-in jQuery
 - lightweight implementation tailored for Server-side rendered markup
+- resize component markup
 - allow resizing of table columns
-- stretch markup parts to locations not supported by CSS
-- optional cookie persistence
 - synchronized scroll between markup
-- tested in Firefox, Safari, Chrome, Opera
+- stretch markup to locations not supported by CSS
+- optional cookie or server-side persistence
+- tested in Firefox, Safari, Chrome, Opera and IE
 
 See our live examples on [http://wicket-box.appspot.com](http://wicket-box.appspot.com).
 
@@ -26,6 +27,7 @@ Components
 - DataBox is a DataTable extension which bundles all behaviors into a highly dynamic table
   with fixed headers, column resizing and its body stretching to the available size
 - TreeBox is the pendant for TableTree 
+- SplitBox splits the size of its markup between a resizable main and a remainder component
 - WizardBox streches its content so its control buttons are pinned to the bottom of its markup area.
 
 Dependency
