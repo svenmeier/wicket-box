@@ -33,7 +33,7 @@ import wicketbox.util.CollectionFormattable;
  * 
  * @author svenmeier
  */
-public class Resize extends AbstractBoxBehavior {
+public class ColResize extends AbstractBoxBehavior {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class Resize extends AbstractBoxBehavior {
 
 	private String bodySelector;
 
-	public Resize(String headerSelector, String bodySelector,
+	public ColResize(String headerSelector, String bodySelector,
 			IModel<List<Integer>> widths) {
 		Args.notNull(widths, "widths");
 
@@ -64,7 +64,7 @@ public class Resize extends AbstractBoxBehavior {
 		super.renderHead(component, response);
 
 		String initJS = String.format(
-				"wicketbox.resize('%s',{header: '%s', body: '%s'},%s,%s);",
+				"wicketbox.colresize('%s',{header: '%s', body: '%s'},%s,%s);",
 				component.getMarkupId(), headerSelector, bodySelector,
 				getPersist(component),
 				new CollectionFormattable(this.widths.getObject()));

@@ -26,20 +26,20 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.PropertyModel;
 
-import wicketbox.Resize;
+import wicketbox.ColResize;
 
 /**
  * @author Sven Meier
  */
-public class ResizeExamplePage extends ExamplePage {
+public class ColResizeExamplePage extends ExamplePage {
 
-	public ResizeExamplePage() {
+	public ColResizeExamplePage() {
 		WebMarkupContainer resizable = new WebMarkupContainer("resizable");
-		resizable.add(new Resize("table.resizable-header",
+		resizable.add(new ColResize("table.resizable-header",
 				"table.resizable-body", new WidthsModel()) {
 			protected String getPersist(Component component) {
 				return persistInCookie(
-						"resize:" + component.getPageRelativePath(),
+						"colresize:" + component.getPageRelativePath(),
 						30 * 24 * 60 * 60);
 			}
 		});

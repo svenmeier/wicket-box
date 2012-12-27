@@ -26,7 +26,7 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
 import wicketbox.AbstractBoxBehavior;
-import wicketbox.Resize;
+import wicketbox.ColResize;
 import wicketbox.Scroll;
 import wicketbox.Stretch;
 
@@ -35,7 +35,7 @@ import wicketbox.Stretch;
  * <ul>
  * <li>the body is {@link Stretch}ed so that the footer is attached to the
  * bottom</li>
- * <li>columns can be {@link Resize}ed, the widths are persisted in a cookie</li>
+ * <li>columns can be {@link ColResize}ed, the widths are persisted in a cookie</li>
  * <li> {@link Scroll}ing between header and body is synchronized, the position
  * is persisted in the document</li>
  * </ul>

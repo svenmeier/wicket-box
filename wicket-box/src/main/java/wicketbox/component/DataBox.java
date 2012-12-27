@@ -25,8 +25,8 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
 import wicketbox.AbstractBoxBehavior;
+import wicketbox.ColResize;
 import wicketbox.Orientation;
-import wicketbox.Resize;
 import wicketbox.Scroll;
 import wicketbox.Stretch;
 
@@ -35,7 +35,7 @@ import wicketbox.Stretch;
  * <ul>
  * <li>the body is {@link Stretch}ed so that the footer is attached to the
  * bottom</li>
- * <li>columns can be {@link Resize}ed, the widths are persisted in a cookie</li>
+ * <li>columns can be {@link ColResize}ed, the widths are persisted in a cookie</li>
  * <li> {@link Scroll}ing between header and body is synchronized, the position
  * is persisted in the document</li>
  * </ul>
@@ -60,11 +60,11 @@ public class DataBox<T, S> extends DataTable<T, S> {
 		add(new Stretch(Orientation.VERTICAL, ".box-table-top",
 				".box-table-body", ".box-table-bottom"));
 
-		add(new Resize(".box-table-top table", ".box-table-body table",
+		add(new ColResize(".box-table-top table", ".box-table-body table",
 				new WidthsModel()) {
 			protected String getPersist(Component component) {
 				return persistInCookie(
-						"resize:" + component.getPageRelativePath(), MAX_AGE);
+						"colresize:" + component.getPageRelativePath(), MAX_AGE);
 			}
 		});
 

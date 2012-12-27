@@ -116,7 +116,7 @@
 				};				
 			},
 
-			resize: function(id, selectors, persist, widths) {
+			colresize: function(id, selectors, persist, widths) {
 				var element = document.getElementById(id);
 				var resizing;
 
