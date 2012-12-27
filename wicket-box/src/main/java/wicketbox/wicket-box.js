@@ -12,35 +12,41 @@
 			stretch: function(id, orientation, selectors) {
 				var element = document.getElementById(id);
 
-				var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
-
-				var leading = 0;
-				$(element).find(selectors.leading).each(function(index, child) {
-					leading += $(child)[method]();
+				apply();
+				
+				$(element).on('resize', function(event) {
+					apply();
 				});
-							
-				var trailing = 0;
-				$(element).find(selectors.trailing).each(function(index, child) {
-					trailing += $(child)[method]();
-				});
+				
+				function apply() {
+					var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
 
-				if (orientation == 'HORIZONTAL') {
-					$(element).find(selectors.center).css({'left': leading + 'px', 'right': trailing + 'px'});
-				} else {
-					$(element).find(selectors.center).css({'top': leading + 'px', 'bottom': trailing + 'px'});
-				}
+					var leading = 0;
+					$(element).find(selectors.leading).each(function(index, child) {
+						leading += $(child)[method]();
+					});
+								
+					var trailing = 0;
+					$(element).find(selectors.trailing).each(function(index, child) {
+						trailing += $(child)[method]();
+					});
+
+					if (orientation == 'HORIZONTAL') {
+						$(element).find(selectors.center).css({'left': leading + 'px', 'right': trailing + 'px'});
+					} else {
+						$(element).find(selectors.center).css({'top': leading + 'px', 'bottom': trailing + 'px'});
+					}
+				};
 			},
 			
-			split: function(id, orientation, selectors, persist, size) {
+			resize: function(id, orientation, selector, persist, size) {
 				var element = document.getElementById(id);
-
-				var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
 
 				loadSize();
 
 				apply();
 				
-				$(element).find(selectors.divider).on('mousedown', function(event) {
+				$(element).find(selector).on('mousedown', function(event) {
 					
 					var initialSize = size;
 					
@@ -53,7 +59,10 @@
 						if (size < wicketbox.MIN) {
 							size = wicketbox.MIN;
 						}
+						
 						apply();
+						
+						$(element).find(selector).trigger('resize');
 					}, function() {
 						saveSize();
 					});
@@ -61,17 +70,9 @@
 
 				function apply() {
 					if (orientation == 'HORIZONTAL') {
-						$(element).find(selectors.main).css({'width': size + 'px'});
-
-						var divider = $(element).find(selectors.divider);
-						divider.css({'left': size + 'px'});
-						$(element).find(selectors.remainder).css({'left': (size + divider.outerWidth()) + 'px'});
+						$(element).css({'width': size + 'px'});
 					} else {
-						$(element).find(selectors.main).css({'height': size + 'px'});
-						
-						var divider = $(element).find(selectors.divider);
-						divider.css({'top': size + 'px'});
-						$(element).find(selectors.remainder).css({'top': (size + divider.outerHeight()) + 'px'});
+						$(element).css({'height': size + 'px'});
 					}
 				};
 				

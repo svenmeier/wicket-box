@@ -24,37 +24,28 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
- * Split markup.
+ * Resize markup.
  * 
  * @author svenmeier
  */
-public class Split extends AbstractBoxBehavior {
+public class Resize extends AbstractBoxBehavior {
 	private static final long serialVersionUID = 1L;
 
-	private String mainSelector;
-
-	private String dividerSelector;
-
-	private String remainderSelector;
+	private String initiateSelector;
 
 	private Orientation orientation;
 
 	private IModel<Integer> size;
 
-	public Split(Orientation orientation, String mainSelector,
-			String dividerSelector, String remainderSelector) {
-		this(orientation, mainSelector, dividerSelector, remainderSelector,
-				Model.of(64));
+	public Resize(Orientation orientation, String initiateSelector) {
+		this(orientation, initiateSelector, Model.of(64));
 	}
 
-	public Split(Orientation orientation, String mainSelector,
-			String dividerSelector, String remainderSelector,
+	public Resize(Orientation orientation, String initiateSelector,
 			IModel<Integer> size) {
 		this.orientation = orientation;
 
-		this.mainSelector = mainSelector;
-		this.dividerSelector = dividerSelector;
-		this.remainderSelector = remainderSelector;
+		this.initiateSelector = initiateSelector;
 
 		this.size = size;
 	}
@@ -76,10 +67,9 @@ public class Split extends AbstractBoxBehavior {
 
 		final int size = this.size.getObject();
 
-		String initJS = String
-				.format("wicketbox.split('%s','%s',{main: '%s', divider: '%s', remainder: '%s'}, %s, %s);",
-						id, orientation, mainSelector, dividerSelector,
-						remainderSelector, persist, size);
+		String initJS = String.format(
+				"wicketbox.resize('%s', '%s', '%s', %s, %s);", id, orientation,
+				initiateSelector, persist, size);
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
 	}
 

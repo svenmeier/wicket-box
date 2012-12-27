@@ -76,7 +76,7 @@
 	overflow: hidden;
 }
 
-.box-theme-basic .box-split-main {
+.box-theme-basic .box-split-wrapper {
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -84,11 +84,21 @@
 	overflow: auto;
 }
 
-.box-theme-basic .box-split-divider {
+.box-theme-basic .box-split-main {
 	position: absolute;
-	width: 8px;
+	left: 0px;
+	right: 8px;
 	top: 0px;
 	bottom: 0px;
+	overflow: auto;
+}
+
+.box-theme-basic .box-split-divider {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	width: 8px;
 	overflow: hidden;
 	cursor: col-resize;
 }

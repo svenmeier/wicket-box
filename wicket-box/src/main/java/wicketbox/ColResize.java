@@ -29,7 +29,7 @@ import org.apache.wicket.util.lang.Args;
 import wicketbox.util.CollectionFormattable;
 
 /**
- * Allows resizing of table columns.
+ * Resize table columns.
  * 
  * @author svenmeier
  */

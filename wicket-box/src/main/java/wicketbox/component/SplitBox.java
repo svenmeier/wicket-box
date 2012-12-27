@@ -22,7 +22,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.lang.Args;
 
 import wicketbox.Orientation;
-import wicketbox.Split;
+import wicketbox.Resize;
+import wicketbox.Stretch;
 
 /**
  * @author Sven Meier
@@ -35,22 +36,26 @@ public class SplitBox extends Panel {
 			IModel<Integer> size) {
 		super(id);
 
-		Args.isTrue("main".equals(main.getId()), "main");
-		add(main);
+		add(new Stretch(Orientation.HORIZONTAL, ".box-split-wrapper",
+				".box-split-remainder", null));
 
-		add(newDivider("divider"));
-
-		Args.isTrue("remainder".equals(remainder.getId()), "remainder");
-		add(remainder);
-
-		add(new Split(Orientation.HORIZONTAL, ".box-split-main",
-				".box-split-divider", ".box-split-remainder", size) {
+		WebMarkupContainer wrapper = new WebMarkupContainer("wrapper");
+		wrapper.add(new Resize(Orientation.HORIZONTAL, ".box-split-divider") {
 			@Override
 			protected String getPersist(Component component) {
 				return persistInCookie(
-						"split:" + component.getPageRelativePath(), MAX_AGE);
+						"resize:" + component.getPageRelativePath(), MAX_AGE);
 			}
 		});
+		add(wrapper);
+
+		Args.isTrue("main".equals(main.getId()), "main");
+		wrapper.add(main);
+
+		wrapper.add(newDivider("divider"));
+
+		Args.isTrue("remainder".equals(remainder.getId()), "remainder");
+		add(remainder);
 	}
 
 	/**
