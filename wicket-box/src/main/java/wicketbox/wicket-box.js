@@ -41,41 +41,23 @@
 				apply();
 				
 				$(element).find(selectors.divider).on('mousedown', function(event) {
-					event.preventDefault();
-					event.stopPropagation();
-					
-					resize(event.pageX, event.pageY);
-				});
-				
-				function resize(initialX, initialY) {
-					var divider = $(element).find(selectors.divider);
 					
 					var initialSize = size;
-						
-					$(document).on('mousemove.wicketbox', function(event) {
-						event.preventDefault();
-						event.stopPropagation();
-						
+					
+					wicketbox.drag(orientation, event, function(delta) {
 						if (orientation == 'HORIZONTAL') {
-							size = initialSize + (event.pageX - initialX);
+							size = initialSize + delta;
 						} else {
-							size = initialSize + (event.pageY - initialY);
+							size = initialSize + delta;
 						}
 						if (size < wicketbox.MIN) {
 							size = wicketbox.MIN;
 						}
 						apply();
-					});
-					
-					$(document).on('mouseup.wicketbox', function(event) {
-						event.preventDefault();
-						event.stopPropagation();
-
-						$(document).off('.wicketbox');
-
+					}, function() {
 						saveSize();
-					});					
-				};
+					});
+				});
 
 				function apply() {
 					if (orientation == 'HORIZONTAL') {
@@ -156,45 +138,28 @@
 					var column = findColumn(event);
 
 					if (column != undefined) {
-						event.preventDefault();
-						event.stopPropagation();
-						
-						resize(column, event.pageX);
+						resizing = true;
+
+						var cols = $(element).find('col:nth-child(' + (column + 1) + ')');
+						var initialWidth = parseInt(cols.attr('width')) || widths[column];
+
+						wicketbox.drag('HORIZONTAL', event, function(delta) {
+							var newWidth = initialWidth + delta;
+							if (newWidth < wicketbox.MIN) {
+								newWidth = wicketbox.MIN;
+							}
+							cols.attr('width', newWidth);
+							
+							// Opera does not trigger scroll events, even if resizing forces a scroll :(
+							$(element).find(selectors.body).trigger('scroll');
+						}, function() {
+							resizing = false;
+
+							saveWidths();
+						});
 					}
 				});
 
-				function resize(column, initialX) {
-					resizing = true;
-
-					var cols = $(element).find('col:nth-child(' + (column + 1) + ')');
-					var initialWidth = parseInt(cols.attr('width')) || widths[column];
-
-					$(document).on('mousemove.wicketbox', function(event) {
-						event.preventDefault();
-						event.stopPropagation();
-						
-						var newWidth = initialWidth + (event.pageX - initialX);
-						if (newWidth < wicketbox.MIN) {
-							newWidth = wicketbox.MIN;
-						}
-						cols.attr('width', newWidth);
-						
-						// Opera does not trigger scroll events, even if resizing forces a scroll :(
-						$(element).find(selectors.body).trigger('scroll');
-					});
-					
-					$(document).on('mouseup.wicketbox', function(event) {
-						event.preventDefault();
-						event.stopPropagation();
-						
-						$(document).off('.wicketbox');
-
-						resizing = false;
-
-						saveWidths();
-					});
-				};
-				
 				function findColumn(event) {
 					var th = $(event.target).closest('th');
 					if (th.size()) {
@@ -246,6 +211,41 @@
 				};
 			},
 
+			drag: function(orientation, event, onDragging, onDragged) {
+				event.preventDefault();
+				event.stopPropagation();
+				
+				var initialX = event.pageX;
+				var initialY = event.pageY;
+				
+				$(document).on('mousemove.wicketbox', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					
+					var delta;
+					if (orientation == 'HORIZONTAL') {
+						delta = event.pageX - initialX;
+					} else {
+						delta = event.pageY - initialY;
+					}
+					
+					if (onDragging) {
+						onDragging(delta);
+					}
+				});
+				
+				$(document).on('mouseup.wicketbox', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					$(document).off('.wicketbox');
+
+					if (onDragged) {
+						onDragged();
+					}
+				});					
+			},
+			
 			persistNot: function() {
 				return function(value) {
 				};
