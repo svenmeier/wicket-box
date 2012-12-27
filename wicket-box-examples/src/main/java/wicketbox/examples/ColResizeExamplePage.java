@@ -35,8 +35,8 @@ public class ColResizeExamplePage extends ExamplePage {
 
 	public ColResizeExamplePage() {
 		WebMarkupContainer resizable = new WebMarkupContainer("resizable");
-		resizable.add(new ColResize("table.resizable-header",
-				"table.resizable-body", new WidthsModel()) {
+		resizable.add(new ColResize("table.colresize-header",
+				"table.colresize-body", new WidthsModel()) {
 			protected String getPersist(Component component) {
 				return persistInCookie(
 						"colresize:" + component.getPageRelativePath(),

@@ -21,33 +21,14 @@
     <body>
     	<wicket:extend>
 	    	<p>
-	    		The Resize behavior allows resizing of table columns.
-	    		In this example the widths are persisted in a cookie. 
+	    		The Resize behavior allows resizing of markup.
+	    		In this example the size is persisted in a cookie. 
 	    	</p>
-			<div wicket:id="resizable" class="colresize-example">
-				<table class="colresize-header">
-					<thead>
-						<tr>
-							<th>Header 1</th>
-							<th>Header 2</th>
-							<th>Header 3</th>
-							<th>Header 4</th>
-						</tr>
-					</thead>
-				</table>
-				<p>
-					Content between header and body.
-				</p>
-				<table class="colresize-body">
-					<tbody>
-						<tr wicket:id="row">
-							<td wicket:id="cell1"></td>
-							<td wicket:id="cell2"></td>
-							<td wicket:id="cell3"></td>
-							<td wicket:id="cell4"></td>
-						</tr>
-					</tbody>
-				</table>
+			<div wicket:id="resize" class="resize-example">
+				<div wicket:id="body" class="body">
+				</div>
+				<div class="initiator">
+				</div>
 			</div>
     	</wicket:extend>
     </body>

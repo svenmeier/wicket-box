@@ -1,3 +1,5 @@
+/* components */
+
 .example-table {
 	width: 300px;
 	height: 300px;
@@ -27,6 +29,8 @@
 .example-split .box-split-remainder {
 	border: 1px solid #AAAAAA;
 }
+
+/* behaviors */
 
 .scroll-example .scroll {
 	float: left;
@@ -67,27 +71,50 @@
 	background: #aaaaaa;
 }
 
-.resizable-example .box-resizing {
+.colresize-example .box-resizing {
 	cursor: col-resize;
 }
 
-.resizable-example table {
+.colresize-example table {
 	table-layout: fixed;
 	border-collapse: collapse;
 	width: 100%;
 }
 
-.resizable-example thead {
+.colresize-example thead {
 	background-color: #DDDDDD;
 }
 
-.resizable-example th {
+.colresize-example th {
 	overflow: hidden;
 	white-space: nowrap;
 	border: 1px solid #AAAAAA;
 }
 
-.resizable-example td {
+.colresize-example td {
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+.resize-example {
+	position: relative;
+}
+
+.resize-example .body {
+	position: absolute;
+	top: 0px;
+	bottom: 8px;
+	left: 0px;
+	right: 0px;
+	overflow: auto;
+}
+
+.resize-example .initiator {
+	position: absolute;
+	height: 8px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: #AAAAAA;
+	cursor: row-resize;
 }
