@@ -50,11 +50,11 @@
 					
 					var initialSize = size;
 					
-					wicketbox.drag(orientation, event, function(delta) {
+					wicketbox.drag(orientation, event, function(deltaX, deltaY) {
 						if (orientation == 'HORIZONTAL') {
-							size = initialSize + delta;
+							size = initialSize + deltaX;
 						} else {
-							size = initialSize + delta;
+							size = initialSize + deltaY;
 						}
 						if (size < wicketbox.MIN) {
 							size = wicketbox.MIN;
@@ -144,8 +144,8 @@
 						var cols = $(element).find('col:nth-child(' + (column + 1) + ')');
 						var initialWidth = parseInt(cols.attr('width')) || widths[column];
 
-						wicketbox.drag('HORIZONTAL', event, function(delta) {
-							var newWidth = initialWidth + delta;
+						wicketbox.drag(event, function(deltaX, deltaY) {
+							var newWidth = initialWidth + deltaX;
 							if (newWidth < wicketbox.MIN) {
 								newWidth = wicketbox.MIN;
 							}
@@ -212,7 +212,7 @@
 				};
 			},
 
-			drag: function(orientation, event, onDragging, onDragged) {
+			drag: function(event, onDragging, onDragged) {
 				event.preventDefault();
 				event.stopPropagation();
 				
@@ -223,15 +223,8 @@
 					event.preventDefault();
 					event.stopPropagation();
 					
-					var delta;
-					if (orientation == 'HORIZONTAL') {
-						delta = event.pageX - initialX;
-					} else {
-						delta = event.pageY - initialY;
-					}
-					
 					if (onDragging) {
-						onDragging(delta);
+						onDragging(event.pageX - initialX, event.pageY - initialY);
 					}
 				});
 				
