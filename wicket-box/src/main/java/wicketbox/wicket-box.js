@@ -50,7 +50,7 @@
 					
 					var initialSize = size;
 					
-					wicketbox.drag(orientation, event, function(deltaX, deltaY) {
+					wicketbox.drag(event, function(deltaX, deltaY) {
 						if (orientation == 'HORIZONTAL') {
 							size = initialSize + deltaX;
 						} else {
