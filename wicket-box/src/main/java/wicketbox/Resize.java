@@ -21,7 +21,6 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Resize markup.
@@ -74,26 +73,13 @@ public class Resize extends AbstractBoxBehavior {
 	}
 
 	/**
-	 * Hook method to decide where position should be persisted.
-	 * 
-	 * @return does not persist
-	 * @see #persistNot(Component)
-	 */
-	protected String getPersist(Component component) {
-		return persistNot(component);
-	}
-
-	/**
 	 * Sets the new size into the model.
 	 * 
 	 * @see #onSplit()
 	 */
 	@Override
-	protected final void respond(AjaxRequestTarget target) {
-		final RequestCycle requestCycle = RequestCycle.get();
-
-		final int size = requestCycle.getRequest().getRequestParameters()
-				.getParameterValue("value").toInt();
+	protected void onPersist(AjaxRequestTarget target, String value) {
+		final int size = Integer.valueOf(value);
 
 		this.size.setObject(size);
 
@@ -104,7 +90,7 @@ public class Resize extends AbstractBoxBehavior {
 	 * Called when the split has changed and this behavior uses server
 	 * persistence.
 	 * 
-	 * @see #persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
+	 * @see #persistToServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
 	 * 
 	 * @param value
 	 */

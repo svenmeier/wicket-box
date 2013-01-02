@@ -16,14 +16,15 @@
 package wicketbox.component;
 
 import org.apache.wicket.extensions.wizard.IWizardModel;
+import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.extensions.wizard.Wizard;
 
 import wicketbox.Orientation;
 import wicketbox.Stretch;
 
 /**
- * A {@link Wizard} wich steps are {@link Stretch}ed so that the buttons are
- * attached to the bottom.
+ * A {@link Wizard} wich {@link IWizardStep}s are {@link Stretch}ed so that the
+ * buttons are always attached to the bottom.
  * 
  * @author Sven Meier
  */

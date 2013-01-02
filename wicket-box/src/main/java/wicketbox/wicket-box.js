@@ -245,7 +245,7 @@
 				};
 			},
 						
-			persistInCookie: function(key, maxAge) {
+			persistToCookie: function(key, maxAge) {
 				return function(value) {
 					if (value) {
 						var suffix ='; path=/';
@@ -268,7 +268,7 @@
 				};
 			},	
 
-			persistInDocument: function(key) {
+			persistToDocument: function(key) {
 				return function(value) {
 					if (value === undefined) {
 						return $(document).data(key);
@@ -278,7 +278,15 @@
 				};
 			},
 			
-			persistOnServer: function(callbackUrl, channel) {
+			persistToInput: function(name) {
+				return function(value) {
+					if (value) {
+						$('input[name=' + name + ']').val(value);
+					}
+				};
+			},
+			
+			persistToServer: function(callbackUrl, channel) {
 				return function(value) {
 					if (value) {
 						var attrs = {

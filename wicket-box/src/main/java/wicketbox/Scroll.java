@@ -21,7 +21,6 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Scroll markup.
@@ -75,26 +74,13 @@ public class Scroll extends AbstractBoxBehavior {
 	}
 
 	/**
-	 * Hook method to decide where position should be persisted.
-	 * 
-	 * @return does not persist
-	 * @see #persistNot(Component)
-	 */
-	protected String getPersist(Component component) {
-		return persistNot(component);
-	}
-
-	/**
 	 * Sets the new position into the model.
 	 * 
 	 * @see #onScrolled()
 	 */
 	@Override
-	protected final void respond(AjaxRequestTarget target) {
-		final RequestCycle requestCycle = RequestCycle.get();
-
-		final int position = requestCycle.getRequest().getRequestParameters()
-				.getParameterValue("value").toInt();
+	protected void onPersist(AjaxRequestTarget target, String value) {
+		final int position = Integer.parseInt(value);
 
 		this.position.setObject(position);
 
@@ -105,7 +91,7 @@ public class Scroll extends AbstractBoxBehavior {
 	 * Called when the scroll position has changed and this behavior uses server
 	 * persistence.
 	 * 
-	 * @see #persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
+	 * @see #persistToServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
 	 * 
 	 * @param value
 	 */

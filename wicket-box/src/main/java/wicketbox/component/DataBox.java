@@ -23,6 +23,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.time.Duration;
 
 import wicketbox.AbstractBoxBehavior;
 import wicketbox.ColResize;
@@ -35,21 +36,22 @@ import wicketbox.Stretch;
  * <ul>
  * <li>the body is {@link Stretch}ed so that the footer is attached to the
  * bottom</li>
- * <li>columns can be {@link ColResize}ed, the widths are persisted in a cookie</li>
+ * <li>columns can be {@link ColResize}ed, the widths are persisted in a cookie
+ * for 30 days</li>
  * <li> {@link Scroll}ing between header and body is synchronized, the position
  * is persisted in the document</li>
  * </ul>
  * Note: Unlike {@link DataTable} this subclass must not be bound to a
  * {@code <table>} markup tag.
  * 
- * @see AbstractBoxBehavior#persistInCookie(String, int)
- * @see AbstractBoxBehavior#persistInDocument(String)
+ * @see AbstractBoxBehavior#persistToCookie(String, Duration)
+ * @see AbstractBoxBehavior#persistTODocument(String)
  * 
  * @author Sven Meier
  */
 public class DataBox<T, S> extends DataTable<T, S> {
 
-	private static final int MAX_AGE = 30 * 24 * 60 * 60;
+	private static final Duration MAX_AGE = Duration.days(30);
 
 	private static final int DEFAULT_WIDTH = 64;
 
@@ -63,7 +65,7 @@ public class DataBox<T, S> extends DataTable<T, S> {
 		add(new ColResize(".box-table-top table", ".box-table-body table",
 				new WidthsModel()) {
 			protected String getPersist(Component component) {
-				return persistInCookie(
+				return persistToCookie(
 						"colresize:" + component.getPageRelativePath(), MAX_AGE);
 			}
 		});
@@ -71,7 +73,7 @@ public class DataBox<T, S> extends DataTable<T, S> {
 		add(new Scroll(Orientation.HORIZONTAL,
 				".box-table-top, .box-table-body") {
 			protected String getPersist(Component component) {
-				return persistInDocument("scroll:" + component.getMarkupId());
+				return persistToDocument("scroll:" + component.getMarkupId());
 			}
 		});
 	}

@@ -16,7 +16,6 @@
 package wicketbox;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
@@ -56,9 +55,5 @@ public class Stretch extends AbstractBoxBehavior {
 						id, orientation, leadingSelector, centerSelector,
 						trailingSelector);
 		response.render(OnDomReadyHeaderItem.forScript(initJS));
-	}
-
-	@Override
-	protected void respond(AjaxRequestTarget target) {
 	}
 }

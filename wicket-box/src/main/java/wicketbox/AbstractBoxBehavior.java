@@ -18,10 +18,14 @@ package wicketbox;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxChannel;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
+import org.apache.wicket.markup.html.form.AbstractTextComponent;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.util.time.Duration;
 
 /**
  * Base class for all box behaviors.
@@ -40,21 +44,95 @@ public abstract class AbstractBoxBehavior extends AbstractDefaultAjaxBehavior {
 		response.render(JavaScriptHeaderItem.forReference(JS));
 	}
 
-	public static String persistNot(Component component) {
+	/**
+	 * Hook method to decide about persistence, by default not persisted.
+	 * 
+	 * @return does not persist
+	 * 
+	 * @see #persistNot(Component)
+	 */
+	protected String getPersist(Component component) {
+		return persistNot();
+	}
+
+	/**
+	 * Handle persistence.
+	 * 
+	 * @see #onPersist(AjaxRequestTarget, String)
+	 */
+	@Override
+	protected final void respond(AjaxRequestTarget target) {
+		final RequestCycle requestCycle = RequestCycle.get();
+
+		final String value = requestCycle.getRequest().getRequestParameters()
+				.getParameterValue("value").toString();
+
+		onPersist(target, value);
+	}
+
+	/**
+	 * Persist a new value.
+	 * 
+	 * @param target
+	 * @param value
+	 */
+	protected void onPersist(AjaxRequestTarget target, String value) {
+	}
+
+	/**
+	 * Not persisted.
+	 */
+	public static String persistNot() {
 		return String.format("wicketbox.persistNot()");
 	}
 
-	public static String persistInCookie(String key, int maxAge) {
-		return String.format("wicketbox.persistInCookie('%s',%s)", key, maxAge);
+	/**
+	 * Persist to a cookie.
+	 * 
+	 * @param key
+	 *            key of cookie
+	 * @param maxAge
+	 *            maximum age for cookie
+	 */
+	public static String persistToCookie(String key, Duration maxAge) {
+		return String.format("wicketbox.persistToCookie('%s',%s)", key,
+				maxAge.seconds());
 	}
 
-	public static String persistInDocument(String key) {
-		return String.format("wicketbox.persistInDocument('%s')", key);
+	/**
+	 * Persist to the containing document.
+	 * 
+	 * @param key
+	 *            key for jQuery data
+	 */
+	public static String persistToDocument(String key) {
+		return String.format("wicketbox.persistToDocument('%s')", key);
 	}
 
-	public static String persistOnServer(CharSequence charSequence,
+	/**
+	 * Persist to the given input component.
+	 * 
+	 * @param callbackUrl
+	 *            url for callback
+	 * 
+	 * @see #onEvent(Component, org.apache.wicket.event.IEvent)
+	 */
+	public static String persistToText(AbstractTextComponent<?> text) {
+		return String.format("wicketbox.persistToInput('%s')",
+				text.getInputName());
+	}
+
+	/**
+	 * Persist to the server.
+	 * 
+	 * @param callbackUrl
+	 *            url for callback
+	 * 
+	 * @see #onEvent(Component, org.apache.wicket.event.IEvent)
+	 */
+	public static String persistToServer(CharSequence callbackUrl,
 			AjaxChannel channel) {
-		return String.format("wicketbox.persistOnServer('%s', '%s')",
-				charSequence, channel);
+		return String.format("wicketbox.persistToServer('%s', '%s')",
+				callbackUrl, channel);
 	}
 }

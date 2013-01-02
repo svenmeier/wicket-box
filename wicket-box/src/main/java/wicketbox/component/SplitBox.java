@@ -20,17 +20,20 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.lang.Args;
+import org.apache.wicket.util.time.Duration;
 
 import wicketbox.Orientation;
 import wicketbox.Resize;
 import wicketbox.Stretch;
 
 /**
+ * A container for a resizable main and a remainder component.
+ * 
  * @author Sven Meier
  */
 public class SplitBox extends Panel {
 
-	private static final int MAX_AGE = 30 * 24 * 60 * 60;
+	private static final Duration MAX_AGE = Duration.days(30);
 
 	public SplitBox(String id, Component main, Component remainder,
 			IModel<Integer> size) {
@@ -43,7 +46,7 @@ public class SplitBox extends Panel {
 		resize.add(new Resize(Orientation.HORIZONTAL, ".box-split-divider") {
 			@Override
 			protected String getPersist(Component component) {
-				return persistInCookie(
+				return persistToCookie(
 						"resize:" + component.getPageRelativePath(), MAX_AGE);
 			}
 		});

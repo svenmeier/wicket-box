@@ -18,6 +18,8 @@ package wicketbox.examples;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
 
 import wicketbox.Orientation;
@@ -28,14 +30,21 @@ import wicketbox.Resize;
  */
 public class ResizeExamplePage extends ExamplePage {
 
+	@SuppressWarnings("unused")
+	private int size = 128;
+
 	public ResizeExamplePage() {
+		final TextField<Integer> input = new TextField<Integer>("input",
+				new PropertyModel<Integer>(this, "size"));
+		input.setEnabled(false);
+		add(input);
+
 		WebMarkupContainer resize = new WebMarkupContainer("resize");
-		resize.add(new Resize(Orientation.VERTICAL, ".initiator") {
+		resize.add(new Resize(Orientation.VERTICAL, ".initiator", input
+				.getModel()) {
 			@Override
 			protected String getPersist(Component component) {
-				return persistInCookie(
-						"resize:" + component.getPageRelativePath(),
-						30 * 24 * 60 * 60);
+				return persistToText(input);
 			}
 		});
 		add(resize);

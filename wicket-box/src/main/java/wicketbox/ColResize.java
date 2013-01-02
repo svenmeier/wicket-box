@@ -23,7 +23,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.util.lang.Args;
 
 import wicketbox.util.CollectionFormattable;
@@ -72,29 +71,14 @@ public class ColResize extends AbstractBoxBehavior {
 	}
 
 	/**
-	 * Hook method to decide where widths should be persisted.
-	 * 
-	 * @return does not persist
-	 * @see #persistNot(Component)
-	 */
-	protected String getPersist(Component component) {
-		return persistNot(component);
-	}
-
-	/**
 	 * Sets the new widths into the model.
 	 * 
 	 * @see #onResized()
 	 */
 	@Override
-	protected final void respond(AjaxRequestTarget target) {
-		final RequestCycle requestCycle = RequestCycle.get();
-
-		final String parameter = requestCycle.getRequest()
-				.getRequestParameters().getParameterValue("value").toString();
-
+	protected void onPersist(AjaxRequestTarget target, String value) {
 		List<Integer> widths = new ArrayList<Integer>();
-		for (String string : parameter.split(":")) {
+		for (String string : value.split(":")) {
 			try {
 				widths.add(Integer.parseInt(string));
 			} catch (Exception noInteger) {
@@ -111,7 +95,7 @@ public class ColResize extends AbstractBoxBehavior {
 	 * Called when the widths have changed and this behavior uses server
 	 * persistence.
 	 * 
-	 * @see #persistOnServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
+	 * @see #persistToServer(CharSequence, org.apache.wicket.ajax.AjaxChannel)
 	 * 
 	 * @param value
 	 */

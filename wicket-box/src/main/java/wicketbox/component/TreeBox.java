@@ -25,23 +25,8 @@ import org.apache.wicket.extensions.markup.html.repeater.tree.TableTree;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
-import wicketbox.AbstractBoxBehavior;
-import wicketbox.ColResize;
-import wicketbox.Scroll;
-import wicketbox.Stretch;
-
 /**
- * A {@link TableTree} with the following enhancements:
- * <ul>
- * <li>the body is {@link Stretch}ed so that the footer is attached to the
- * bottom</li>
- * <li>columns can be {@link ColResize}ed, the widths are persisted in a cookie</li>
- * <li> {@link Scroll}ing between header and body is synchronized, the position
- * is persisted in the document</li>
- * </ul>
- * 
- * @see AbstractBoxBehavior#persistInCookie(String, int)
- * @see AbstractBoxBehavior#persistInDocument(String)
+ * A {@link TableTree} utilizing a {@link DataBox}.
  * 
  * @author Sven Meier
  */

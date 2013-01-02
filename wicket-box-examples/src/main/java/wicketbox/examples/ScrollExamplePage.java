@@ -19,6 +19,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.util.time.Duration;
 
 import wicketbox.Orientation;
 import wicketbox.Scroll;
@@ -33,9 +34,9 @@ public class ScrollExamplePage extends ExamplePage {
 		scroll.add(new Scroll(Orientation.VERTICAL, ".scroll") {
 			@Override
 			protected String getPersist(Component component) {
-				return persistInCookie(
+				return persistToCookie(
 						"scroll:" + component.getPageRelativePath(),
-						30 * 24 * 60 * 60);
+						Duration.days(1));
 			}
 		});
 		add(scroll);

@@ -25,6 +25,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.util.time.Duration;
 
 import wicketbox.ColResize;
 
@@ -38,9 +39,9 @@ public class ColResizeExamplePage extends ExamplePage {
 		resizable.add(new ColResize("table.colresize-header",
 				"table.colresize-body", new WidthsModel()) {
 			protected String getPersist(Component component) {
-				return persistInCookie(
+				return persistToCookie(
 						"colresize:" + component.getPageRelativePath(),
-						30 * 24 * 60 * 60);
+						Duration.days(1));
 			}
 		});
 		add(resizable);
