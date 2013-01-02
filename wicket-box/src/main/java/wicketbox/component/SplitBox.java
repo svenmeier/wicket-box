@@ -36,23 +36,23 @@ public class SplitBox extends Panel {
 			IModel<Integer> size) {
 		super(id);
 
-		add(new Stretch(Orientation.HORIZONTAL, ".box-split-wrapper",
+		add(new Stretch(Orientation.HORIZONTAL, ".box-split-resize",
 				".box-split-remainder", null));
 
-		WebMarkupContainer wrapper = new WebMarkupContainer("wrapper");
-		wrapper.add(new Resize(Orientation.HORIZONTAL, ".box-split-divider") {
+		WebMarkupContainer resize = new WebMarkupContainer("resize");
+		resize.add(new Resize(Orientation.HORIZONTAL, ".box-split-divider") {
 			@Override
 			protected String getPersist(Component component) {
 				return persistInCookie(
 						"resize:" + component.getPageRelativePath(), MAX_AGE);
 			}
 		});
-		add(wrapper);
+		add(resize);
 
 		Args.isTrue("main".equals(main.getId()), "main");
-		wrapper.add(main);
+		resize.add(main);
 
-		wrapper.add(newDivider("divider"));
+		resize.add(newDivider("divider"));
 
 		Args.isTrue("remainder".equals(remainder.getId()), "remainder");
 		add(remainder);

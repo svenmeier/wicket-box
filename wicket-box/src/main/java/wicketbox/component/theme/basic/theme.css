@@ -76,7 +76,7 @@
 	overflow: hidden;
 }
 
-.box-theme-basic .box-split-wrapper {
+.box-theme-basic .box-split-resize {
 	position: absolute;
 	left: 0px;
 	top: 0px;
