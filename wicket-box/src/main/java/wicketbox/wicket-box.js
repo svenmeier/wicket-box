@@ -70,9 +70,19 @@
 
 				function apply() {
 					if (orientation == 'HORIZONTAL') {
-						$(element).css({'width': size + 'px'});
+						var width = $(element).parent().outerWidth(); 
+						if (width > size) {
+							width = size;
+						}
+						
+						$(element).css({'width': width + 'px'});
 					} else {
-						$(element).css({'height': size + 'px'});
+						var height = $(element).parent().outerHeight(); 
+						if (height > size) {
+							height = size;
+						}
+						
+						$(element).css({'height': height + 'px'});
 					}
 				};
 				
@@ -223,9 +233,7 @@
 					event.preventDefault();
 					event.stopPropagation();
 					
-					if (onDragging) {
-						onDragging(event.pageX - initialX, event.pageY - initialY);
-					}
+					onDragging(event.pageX - initialX, event.pageY - initialY);
 				});
 				
 				$(document).on('mouseup.wicketbox', function(event) {
@@ -234,9 +242,7 @@
 
 					$(document).off('.wicketbox');
 
-					if (onDragged) {
-						onDragged();
-					}
+					onDragged();
 				});					
 			},
 			
