@@ -19,7 +19,7 @@
 				});
 				
 				function apply() {
-					var method = 'HORIZONTAL' == orientation ? 'outerWidth' : 'outerHeight';
+					var method = ('HORIZONTAL' == orientation) ? 'outerWidth' : 'outerHeight';
 
 					var leading = 0;
 					$(element).find(selectors.leading).each(function(index, child) {
@@ -56,9 +56,6 @@
 						} else {
 							size = initialSize + deltaY;
 						}
-						if (size < wicketbox.MIN) {
-							size = wicketbox.MIN;
-						}
 						
 						apply();
 						
@@ -69,20 +66,22 @@
 				});
 
 				function apply() {
+					var method = ('HORIZONTAL' == orientation) ? 'outerWidth' : 'outerHeight';
+
+					var min = $(selector)[method]();
+					if (size < min) {
+						size = min;
+					}
+					
+					var max = $(element).parent()[method](); 
+					if (size > max) {
+						size = max;
+					}
+						
 					if (orientation == 'HORIZONTAL') {
-						var width = $(element).parent().outerWidth(); 
-						if (width > size) {
-							width = size;
-						}
-						
-						$(element).css({'width': width + 'px'});
+						$(element).css({'width': size + 'px'});
 					} else {
-						var height = $(element).parent().outerHeight(); 
-						if (height > size) {
-							height = size;
-						}
-						
-						$(element).css({'height': height + 'px'});
+						$(element).css({'height': size + 'px'});
 					}
 				};
 				
