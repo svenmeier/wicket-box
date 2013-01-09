@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.github.svenmeier.wicket-box</groupId>
 	<artifactId>wicket-box-parent</artifactId>
-	<version>0.6.0</version>
+	<version>0.6.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Wicket Box Parent</name>
 	<description>Wicket Box.</description>
